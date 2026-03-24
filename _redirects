@@ -1,0 +1,3 @@
+# Clean URLs (drop .html)
+/aanmelden.html  /aanmelden  301
+/woningen.html   /woningen   301
