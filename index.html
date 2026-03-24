@@ -219,11 +219,33 @@
     .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
     .logo span { color: var(--teal); }
     .logo-flamingo { display: inline-block; margin-left: 6px; vertical-align: middle; opacity: 0.85; }
-    nav ul { list-style: none; display: flex; align-items: center; gap: 2rem; }
-    nav ul a { text-decoration: none; font-size: 0.875rem; font-weight: 500; color: var(--ink-soft); transition: color 0.2s; }
-    nav ul a:hover { color: var(--teal); }
+    .nav-actions { display:flex; align-items:center; gap:1rem; }
+    .nav-menu { list-style:none; display:flex; align-items:center; gap:2rem; }
+    .nav-menu a { text-decoration:none; font-size:0.875rem; font-weight:500; color:var(--ink-soft); transition:color 0.2s; }
+    .nav-menu a:hover { color:var(--teal); }
     .nav-cta { background: var(--coral) !important; color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 6px; transition: background 0.2s !important; }
     .nav-cta:hover { background: var(--coral-dark) !important; color: var(--white) !important; }
+    .nav-dropdown { position:relative; }
+    .nav-dropdown > a { display:inline-flex; align-items:center; gap:0.35rem; }
+    .nav-dropdown-menu {
+      position:absolute; top:calc(100% + 14px); left:0; min-width:190px; padding:0.8rem;
+      background:rgba(253,246,236,0.98); border:1px solid rgba(8,145,178,0.15); border-radius:18px;
+      box-shadow:0 18px 40px rgba(26,35,50,0.12); display:flex; flex-direction:column; gap:0.55rem;
+      opacity:0; visibility:hidden; transform:translateY(10px); transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { opacity:1; visibility:visible; transform:translateY(0); }
+    .nav-dropdown-menu a { padding:0.35rem 0.25rem; white-space:nowrap; }
+    .nav-toggle {
+      display:none; width:46px; height:46px; border:none; border-radius:14px; background:rgba(8,145,178,0.1);
+      color:var(--ink); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:5px;
+    }
+    .nav-toggle span { width:20px; height:2px; border-radius:999px; background:currentColor; transition:transform 0.25s ease, opacity 0.2s ease; }
+    body.nav-open .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    body.nav-open .nav-toggle span:nth-child(2) { opacity:0; }
+    body.nav-open .nav-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .nav-overlay { position:fixed; inset:0; background:rgba(26,35,50,0.34); backdrop-filter:blur(4px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity 0.25s ease, visibility 0.25s ease; z-index:95; }
+    .nav-close { display:none; }
 
     /* ── LANG ── */
     .lang-bar { display: flex; gap: 4px; }
@@ -464,7 +486,17 @@
       .pricing-grid { grid-template-columns: 1fr; gap: 1.8rem; max-width: 420px; margin-left: auto; margin-right: auto; }
       .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .types-grid { grid-template-columns: repeat(2,1fr); }
-      nav ul { display: none; }
+      .nav-toggle { display:flex; }
+      .nav-actions { gap:0.75rem; }
+      .nav-menu { position:fixed; top:0; right:0; height:100vh; width:min(360px,88vw); padding:5.5rem 1.4rem 1.6rem; background:var(--sand); border-left:1px solid rgba(8,145,178,0.12); box-shadow:-20px 0 50px rgba(26,35,50,0.18); flex-direction:column; align-items:flex-start; gap:0.2rem; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s ease; z-index:110; }
+      .nav-menu li { width:100%; }
+      .nav-menu > li > a, .nav-menu > li > button { width:100%; padding:0.95rem 0.3rem; font-size:1rem; }
+      .nav-menu .nav-cta { display:inline-flex; justify-content:center; width:100%; margin-top:0.55rem; }
+      .nav-dropdown { width:100%; }
+      .nav-dropdown-menu { position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:none; background:rgba(8,145,178,0.06); margin:0.2rem 0 0.5rem; }
+      .nav-close { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:16px; right:16px; width:42px; height:42px; border:none; border-radius:12px; background:rgba(8,145,178,0.1); color:var(--ink); cursor:pointer; font-size:1.5rem; }
+      body.nav-open .nav-menu { transform:translateX(0); }
+      body.nav-open .nav-overlay { opacity:1; visibility:visible; pointer-events:auto; }
       .hero-flamingo { display: none; }
       .img-break { background-attachment: scroll; }
     }
@@ -525,19 +557,26 @@
       </svg>
     </span>
   </a>
-  <ul>
-    <li><a href="#hoe" data-i18n="nav_how">Hoe het werkt</a></li>
-    <li><a href="#waarom" data-i18n="nav_why">Voordelen</a></li>
-    <li class="nav-dropdown"><a href="#" data-i18n="nav_areas">Buurten ▾</a><div class="nav-dropdown-menu"><a href="/jan-thiel">Jan Thiel</a><a href="/blue-bay">Blue Bay</a><a href="/bandabou">Bandabou</a></div></li>
-    <li><a href="#faq" data-i18n="nav_faq">Vragen</a></li>
-    <li><a href="#aanmelden" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
-  </ul>
-  <div class="lang-bar">
-    <button class="lang-btn" onclick="setLang('nl')">NL</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
-    <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
+  <div class="nav-actions">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    <ul class="nav-menu" id="site-menu">
+      <li><button class="nav-close" type="button" aria-label="Close menu">×</button></li>
+      <li><a href="#hoe" data-i18n="nav_how">Hoe het werkt</a></li>
+      <li><a href="#waarom" data-i18n="nav_why">Voordelen</a></li>
+      <li class="nav-dropdown"><a href="#" data-i18n="nav_areas">Buurten ▾</a><div class="nav-dropdown-menu"><a href="/jan-thiel">Jan Thiel</a><a href="/blue-bay">Blue Bay</a><a href="/bandabou">Bandabou</a></div></li>
+      <li><a href="#faq" data-i18n="nav_faq">Vragen</a></li>
+      <li><a href="#pricing" data-i18n="nav_prices">Prijzen</a></li>
+      <li><a href="/blog" data-i18n="nav_blog">Blog</a></li>
+      <li><a href="#aanmelden" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
+    </ul>
+    <div class="lang-bar">
+      <button class="lang-btn" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
+    </div>
   </div>
 </nav>
+<div class="nav-overlay" hidden></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -866,7 +905,7 @@
 
 const T = {
   nl:{
-    nav_how:"Hoe het werkt",nav_why:"Voordelen",nav_faq:"Vragen",nav_cta:"Meld je object aan →",
+    nav_how:"Hoe het werkt",nav_why:"Voordelen",nav_faq:"Vragen",nav_prices:"Prijzen",nav_blog:"Blog",nav_cta:"Meld je object aan →",
     hero_badge:"🌴 Curaçao · Geen makelaar nodig",
     hero_h1:'Verkoop je kavel, grond of woning op Curaçao <em>zelf</em> — bespaar tot ANG 22.500',
     hero_p:"Meld je kavel, grond of woning aan vanaf ANG 399. Kopers nemen direct contact op. Slechts 1% bij verkoop — een makelaar rekent 4%.<br><strong style='color:#E05C38'>⚠️ Bespaar tot ANG 13.100 t.o.v. een makelaar.</strong>",
@@ -920,7 +959,7 @@ const T = {
     footer_copy:"© 2026 VendaCuraçao · Particulier vastgoed op Curaçao"
   },
   en:{
-    nav_how:"How it works",nav_why:"Benefits",nav_faq:"FAQ",nav_cta:"List your property →",
+    nav_how:"How it works",nav_why:"Benefits",nav_faq:"FAQ",nav_prices:"Pricing",nav_blog:"Blog",nav_cta:"List your property →",
     hero_badge:"🌴 Curaçao · No agent needed",
     hero_h1:'Sell your land, plot or property in Curaçao <em>yourself</em> — save up to ANG 22,500',
     hero_p:"List your land, plot or property from ANG 399. Buyers contact you directly. Only 1% on sale — agents charge 4%.<br><strong style='color:#E05C38'>⚠️ Save up to ANG 13,100 vs a real estate agent.</strong>",
@@ -974,7 +1013,7 @@ const T = {
     footer_copy:"© 2026 VendaCuraçao · Private real estate in Curaçao"
   },
   pap:{
-    nav_how:"Kòmo ta funkshoná",nav_why:"Benefisionan",nav_faq:"Preguntanan",nav_cta:"Registrá bo kas →",
+    nav_how:"Kòmo ta funkshoná",nav_why:"Benefisionan",nav_faq:"Preguntanan",nav_prices:"Preisnan",nav_blog:"Blog",nav_cta:"Registrá bo kas →",
     hero_badge:"🌴 Korsou · Sin makler, sin komishon",
     hero_h1:'Bende bo tereno, grond of kas na Korsou <em>bo mes</em> — salbá te ANG 22.500',
     hero_p:"Registrá bo tereno, grond of kas desde ANG 399. Kompradornan ta kontaktá bo direk. Solamente 1% ora di benta — un makelaar ta kobra 4%.<br><strong style='color:#E05C38'>⚠️ Spaar te ku ANG 13.100 kompará ku un makelaar.</strong>",
@@ -1045,6 +1084,22 @@ function setLang(lang) {
   url.searchParams.set('lang', selected);
   window.history.replaceState({}, '', url);
 }
+
+
+const navToggle = document.querySelector('.nav-toggle');
+const navClose = document.querySelector('.nav-close');
+const navOverlay = document.querySelector('.nav-overlay');
+const navMenu = document.querySelector('.nav-menu');
+function setNavOpen(open) {
+  document.body.classList.toggle('nav-open', open);
+  if (navToggle) navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (navOverlay) navOverlay.hidden = !open;
+}
+if (navToggle) navToggle.addEventListener('click', () => setNavOpen(!document.body.classList.contains('nav-open')));
+if (navClose) navClose.addEventListener('click', () => setNavOpen(false));
+if (navOverlay) navOverlay.addEventListener('click', () => setNavOpen(false));
+if (navMenu) navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setNavOpen(false)));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setNavOpen(false); });
 
 const initialLang = new URLSearchParams(window.location.search).get('lang') || 'pap';
 setLang(initialLang);
