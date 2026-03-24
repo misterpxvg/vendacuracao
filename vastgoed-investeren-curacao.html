@@ -271,7 +271,33 @@
     .type-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
     .type-card p { font-size: 0.78rem; color: var(--ink-soft); font-weight: 300; line-height: 1.5; }
 
-    /* ── FAQ ── */
+    
+    /* ── CONTENT LAYOUT ── */
+    .content-grid { display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; }
+    .content-card { background: var(--white); border-radius: 18px; padding: 2.5rem 2.2rem; box-shadow: 0 4px 24px rgba(26,35,50,0.06); line-height: 1.8; }
+    .content-card h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--ink); margin: 2rem 0 0.8rem; }
+    .content-card h2:first-of-type { margin-top: 1rem; }
+    .content-card p { font-size: 0.95rem; color: var(--ink-soft); font-weight: 300; margin-bottom: 1rem; }
+    .content-card ol, .content-card ul { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .content-card li { font-size: 0.95rem; color: var(--ink-soft); font-weight: 300; margin-bottom: 0.5rem; line-height: 1.7; }
+    .content-card strong { color: var(--ink); font-weight: 600; }
+    .side-stack { display: flex; flex-direction: column; gap: 1.2rem; position: sticky; top: 88px; }
+    .side-card { background: var(--white); border-radius: 16px; padding: 1.6rem 1.4rem; box-shadow: 0 4px 20px rgba(26,35,50,0.06); border: 1px solid rgba(8,145,178,0.08); }
+    .side-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 0.6rem; }
+    .side-card ul { list-style: none; padding: 0; }
+    .side-card ul li { font-size: 0.88rem; color: var(--ink-soft); padding: 0.35rem 0; padding-left: 1.2rem; position: relative; }
+    .side-card ul li::before { content: "\2713"; color: var(--teal); font-weight: 700; position: absolute; left: 0; }
+    .side-card p { font-size: 0.9rem; }
+    @media (max-width: 960px) {
+      .content-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .side-stack { position: static; }
+    }
+    @media (max-width: 600px) {
+      .content-card { padding: 1.6rem 1.2rem; }
+      .content-card h2 { font-size: 1.25rem; }
+    }
+
+/* ── FAQ ── */
     .faq { background: var(--teal-light); }
     .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2.5rem; }
     .faq-item { background: var(--white); border-radius: 12px; padding: 1.6rem 1.8rem; border: 1px solid rgba(8,145,178,0.12); }
