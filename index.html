@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+  <!-- GA4: G-XXXXXXXXXX -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VendaCuraçao — Verkoop je kavel, grond of woning zelf op Curaçao | FSBO</title>
@@ -473,6 +483,15 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu { display:none; position:absolute; top:calc(100% + 0.4rem); left:0; min-width:220px; background:var(--white); border:1px solid rgba(8,145,178,0.12); border-radius:14px; padding:0.5rem; box-shadow:0 18px 40px rgba(26,35,50,0.08); }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { display:block; }
+    .nav-dropdown-menu a { display:block; padding:0.7rem 0.8rem; border-radius:10px; }
+    .nav-dropdown-menu a:hover { background:var(--teal-light); }
+    .area-links { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+    .area-card { background:var(--white); border:1px solid rgba(8,145,178,0.12); border-radius:18px; padding:1.5rem; text-decoration:none; color:var(--ink); box-shadow:0 16px 38px rgba(26,35,50,0.06); }
+    .area-card h3 { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:0.55rem; }
+    .area-card p { color:var(--ink-soft); }
     .wa-float svg { width: 32px; height: 32px; fill: #fff; }
   </style>
 </head>
@@ -498,6 +517,7 @@
   <ul>
     <li><a href="#hoe" data-i18n="nav_how">Hoe het werkt</a></li>
     <li><a href="#waarom" data-i18n="nav_why">Voordelen</a></li>
+    <li class="nav-dropdown"><a href="#" data-i18n="nav_areas">Buurten ▾</a><div class="nav-dropdown-menu"><a href="/jan-thiel">Jan Thiel</a><a href="/blue-bay">Blue Bay</a><a href="/bandabou">Bandabou</a></div></li>
     <li><a href="#faq" data-i18n="nav_faq">Vragen</a></li>
     <li><a href="#aanmelden" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
   </ul>
@@ -738,6 +758,18 @@
   </div>
 </section>
 
+<!-- AREAS -->
+<section class="types" id="buurten">
+  <div class="section-label">Buurten op Curaçao</div>
+  <h2 class="section-title">Bekijk objecten per buurt</h2>
+  <p class="section-sub">Verken populaire woongebieden op Curaçao en ontdek waar jouw volgende koper of woningmatch zit.</p>
+  <div class="area-links">
+    <a class="area-card" href="/jan-thiel"><h3>Jan Thiel</h3><p>Luxe, expat-populair, strand en horeca met premium uitstraling.</p></a>
+    <a class="area-card" href="/blue-bay"><h3>Blue Bay</h3><p>Golfresort, rustig, familiegericht en sterk voor eigen gebruik of verhuur.</p></a>
+    <a class="area-card" href="/bandabou"><h3>Bandabou</h3><p>Authentiek, groen en ruim opgezet met aantrekkelijker instapniveau.</p></a>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="section-label" data-i18n="faq_label">Veelgestelde vragen</div>
@@ -782,16 +814,30 @@
 
 <!-- FOOTER -->
 <footer>
+  <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;">
+  <div>
   <a href="#" class="logo">Venda<span>Curaçao</span>
     <span class="logo-flamingo">
       <svg width="14" height="22" viewBox="0 0 80 130" fill="none"><path d="M38 112 C28 108 20 98 22 85 C24 72 36 66 50 70 C64 74 70 86 66 100 C62 112 50 118 38 112Z" fill="#E05C38"/><path d="M36 78 C34 65 28 50 24 36 C20 22 22 10 30 6 C38 2 48 8 50 18" stroke="#E05C38" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="48" cy="14" rx="10" ry="8" fill="#E05C38"/><path d="M36 115 L32 128 M32 128 L24 133 M32 128 L40 131" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/></svg>
     </span>
   </a>
   <p data-i18n="footer_copy">© 2026 VendaCuraçao · Particulier vastgoed op Curaçao</p>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:0.55rem 1rem;max-width:520px;">
+    <a href="/woning-verkopen-curacao">Woning verkopen</a>
+    <a href="/kavel-verkopen-curacao">Kavel verkopen</a>
+    <a href="/for-sale-by-owner-curacao">FSBO Curaçao</a>
+    <a href="/kas-bende-korsou">Kas bende Kòrsou</a>
+    <a href="/emigreren-huis-kopen-curacao">Emigreren</a>
+    <a href="/vastgoed-investeren-curacao">Investeren</a>
+    <a href="/jan-thiel">Jan Thiel</a>
+    <a href="/blue-bay">Blue Bay</a>
+    <a href="/bandabou">Bandabou</a>
+  </div>
   <div class="lang-bar">
     <button class="lang-btn" onclick="setLang('nl')">NL</button>
     <button class="lang-btn" onclick="setLang('en')">EN</button>
     <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
+  </div>
   </div>
 </footer>
 
@@ -855,6 +901,7 @@ const T = {
     cta_sub:"Lanceringsaanbod: eerste 25 objecten (kavels, woningen, appartementen) staan gratis en permanent online. Daarna geldt het standaardtarief.",
     cta_btn1:"Zet mijn kavel of huis online →",cta_btn2:"WhatsApp ons",
     cta_note:"Of stuur een e-mail naar info@vendacuracao.com · Reactie binnen 24 uur",
+    nav_areas:"Buurten ▾",
     footer_copy:"© 2026 VendaCuraçao · Particulier vastgoed op Curaçao"
   },
   en:{
@@ -908,6 +955,7 @@ const T = {
     cta_sub:"Launch offer: first 25 listings (land, houses, apartments) are free and permanently online. Standard rates apply after.",
     cta_btn1:"List my land or property →",cta_btn2:"WhatsApp us",
     cta_note:"Or email info@vendacuracao.com · We respond within 24 hours",
+    nav_areas:"Neighborhoods ▾",
     footer_copy:"© 2026 VendaCuraçao · Private real estate in Curaçao"
   },
   pap:{
@@ -961,6 +1009,7 @@ const T = {
     cta_sub:"Oferta di lansamentu: promer 25 propiedad (tereno, kas, apartamento) ta gratis i permanente online. Despues tarifa standard ta konta.",
     cta_btn1:"Pone mi tereno of kas online →",cta_btn2:"WhatsApp nos",
     cta_note:"Of manda email na info@vendacuracao.com · Nos ta respondé den 24 ora",
+    nav_areas:"Barionan ▾",
     footer_copy:"© 2026 VendaCuraçao · Propiedad partikular na Korsou"
   }
 };
