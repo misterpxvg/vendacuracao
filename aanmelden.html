@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pap">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aanmelden | VendaCuraçao</title>
+  <meta name="description" content="Meld je vastgoed aan op VendaCuraçao. Drietalig formulier voor kavels, woningen, appartementen en bedrijfspanden op Curaçao.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vendacuracao.com/aanmelden.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sand:#FDF6EC; --sand-2:#F5EAD4; --teal:#0891B2; --teal-dark:#0C6B87;
+      --teal-light:#E0F4F8; --coral:#E05C38; --gold:#D97706; --ink:#1A2332;
+      --ink-soft:#4A5568; --white:#FFFFFF; --green:#166534;
+    }
+    body { font-family:'Inter',sans-serif; background:var(--sand); color:var(--ink); line-height:1.6; }
+    nav {
+      position: sticky; top: 0; z-index: 100; height: 70px; padding: 0 5%;
+      display:flex; align-items:center; justify-content:space-between;
+      background: rgba(253,246,236,0.95); backdrop-filter: blur(14px);
+      border-bottom:1px solid rgba(8,145,178,0.12);
+    }
+    .logo { font-family:'Playfair Display',serif; font-size:1.45rem; color:var(--ink); text-decoration:none; }
+    .logo span { color:var(--teal); }
+    .nav-links { display:flex; gap:1.25rem; align-items:center; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--ink-soft); font-size:0.92rem; font-weight:500; }
+    .nav-links a:hover { color:var(--teal); }
+    .nav-cta { background:var(--coral); color:var(--white)!important; padding:0.6rem 1.15rem; border-radius:8px; }
+    .lang-bar { display:flex; gap:0.4rem; }
+    .lang-btn {
+      border:1px solid rgba(8,145,178,0.2); background:rgba(255,255,255,0.7); color:var(--ink);
+      padding:0.45rem 0.7rem; border-radius:999px; font-size:0.8rem; cursor:pointer;
+    }
+    .lang-btn.active { background:var(--teal); color:var(--white); border-color:var(--teal); }
+    .hero {
+      background: linear-gradient(135deg, rgba(12,107,135,0.96), rgba(8,145,178,0.88));
+      color:var(--white); padding:72px 5% 54px;
+    }
+    .hero-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.1fr 0.9fr; gap:2rem; align-items:center; }
+    .hero-badge { display:inline-block; margin-bottom:1rem; padding:0.45rem 0.8rem; border-radius:999px; background:rgba(255,255,255,0.14); font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; }
+    h1 { font-family:'Playfair Display',serif; font-size:clamp(2.3rem,4.5vw,3.4rem); font-weight:400; line-height:1.15; margin-bottom:1rem; }
+    .hero p { font-size:1.03rem; color:rgba(255,255,255,0.84); max-width:620px; }
+    .hero-card {
+      background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.18); border-radius:18px;
+      padding:1.6rem; backdrop-filter:blur(8px);
+    }
+    .hero-card h3 { font-size:1rem; margin-bottom:0.8rem; }
+    .hero-card ul { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
+    .hero-card li { display:flex; gap:0.7rem; color:rgba(255,255,255,0.88); font-size:0.94rem; }
+    .hero-card li::before { content:'✓'; color:#F6D28B; font-weight:700; }
+    .section { max-width:1100px; margin:0 auto; padding:64px 5%; }
+    .form-shell {
+      display:grid; grid-template-columns:1.2fr 0.8fr; gap:1.5rem; align-items:start;
+    }
+    .form-card, .info-card {
+      background:var(--white); border-radius:18px; box-shadow:0 16px 45px rgba(26,35,50,0.08);
+      border:1px solid rgba(8,145,178,0.12);
+    }
+    .form-card { padding:2rem; }
+    .info-card { padding:1.6rem; position:sticky; top:92px; }
+    .section-label { font-size:0.76rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--teal); font-weight:700; margin-bottom:0.9rem; }
+    .section-title { font-family:'Playfair Display',serif; font-size:2rem; font-weight:400; line-height:1.2; margin-bottom:0.8rem; }
+    .section-sub { color:var(--ink-soft); margin-bottom:1.6rem; }
+    form { display:flex; flex-direction:column; gap:1rem; }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .field-group { display:flex; flex-direction:column; gap:0.45rem; }
+    label { font-size:0.92rem; font-weight:600; color:var(--ink); }
+    .optional { color:var(--ink-soft); font-weight:400; }
+    input, select, textarea {
+      width:100%; border:1px solid rgba(8,145,178,0.18); border-radius:10px; background:#fff;
+      padding:0.9rem 1rem; font:inherit; color:var(--ink);
+    }
+    textarea { min-height:150px; resize:vertical; }
+    input:focus, select:focus, textarea:focus { outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(8,145,178,0.12); }
+    .submit-row { display:flex; flex-wrap:wrap; gap:0.9rem; align-items:center; margin-top:0.35rem; }
+    .btn-primary, .btn-secondary {
+      display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; text-decoration:none; border:none; cursor:pointer;
+      border-radius:10px; padding:0.95rem 1.4rem; font-size:0.95rem; font-weight:700;
+    }
+    .btn-primary { background:var(--coral); color:var(--white); }
+    .btn-secondary { background:var(--teal-light); color:var(--teal-dark); }
+    .microcopy { color:var(--ink-soft); font-size:0.88rem; }
+    .info-card h3 { font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:400; margin-bottom:0.8rem; }
+    .info-card p { color:var(--ink-soft); font-size:0.94rem; margin-bottom:1rem; }
+    .info-points { list-style:none; display:flex; flex-direction:column; gap:0.85rem; margin-bottom:1.2rem; }
+    .info-points li { display:flex; gap:0.75rem; color:var(--ink-soft); font-size:0.9rem; }
+    .info-points li::before { content:'•'; color:var(--gold); font-weight:700; }
+    .contact-box { background:var(--sand); border-radius:14px; padding:1rem; }
+    .contact-box a { color:var(--teal-dark); font-weight:600; text-decoration:none; }
+    footer { background:var(--ink); padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer .logo { color:var(--white); }
+    footer p, footer a { color:rgba(255,255,255,0.65); text-decoration:none; font-size:0.9rem; }
+    @media (max-width: 960px) {
+      .hero-inner, .form-shell, .field-row { grid-template-columns:1fr; }
+      .info-card { position:static; }
+      .nav-links { display:none; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size:2.2rem; }
+      .form-card { padding:1.4rem; }
+      footer { flex-direction:column; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/index.html" class="logo">Venda<span>Curaçao</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#hoe" data-i18n="nav_how">Hoe het werkt</a></li>
+      <li><a href="/index.html#prijzen" data-i18n="nav_pricing">Tarieven</a></li>
+      <li><a href="/woningen.html" data-i18n="nav_listings">Aanbod</a></li>
+      <li><a href="/aanmelden.html" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
+    </ul>
+    <div class="lang-bar">
+      <button class="lang-btn" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-badge" data-i18n="hero_badge">Nieuw op Curaçao</span>
+        <h1 data-i18n="hero_title">Meld je vastgoed aan zonder makelaar</h1>
+        <p data-i18n="hero_text">Gebruik dit korte formulier om je kavel, woning, appartement of bedrijfspand aan te melden. Wij nemen daarna contact met je op om je listing snel live te zetten.</p>
+      </div>
+      <div class="hero-card">
+        <h3 data-i18n="hero_card_title">Wat je vandaag regelt</h3>
+        <ul>
+          <li data-i18n="hero_card_1">Je basisgegevens en contactgegevens</li>
+          <li data-i18n="hero_card_2">Adres en type object</li>
+          <li data-i18n="hero_card_3">Vraagprijs en extra toelichting</li>
+          <li data-i18n="hero_card_4">Directe verzending naar info@vendacuracao.com</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="form-shell">
+      <div class="form-card">
+        <div class="section-label" data-i18n="form_label">Aanmeldformulier</div>
+        <h2 class="section-title" data-i18n="form_title">Vertel ons iets over je object</h2>
+        <p class="section-sub" data-i18n="form_sub">Na verzending opent je e-mailapp met alle ingevulde gegevens. Zo kunnen wij snel reageren zonder extra software of account.</p>
+
+        <form action="mailto:info@vendacuracao.com" method="post" enctype="text/plain">
+          <div class="field-row">
+            <div class="field-group">
+              <label for="name" data-i18n="label_name">Naam</label>
+              <input id="name" name="Naam" type="text" required>
+            </div>
+            <div class="field-group">
+              <label for="phone" data-i18n="label_phone">WhatsApp / Telefoon</label>
+              <input id="phone" name="WhatsApp of Telefoon" type="tel" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="email" data-i18n="label_email">E-mail</label>
+              <input id="email" name="E-mail" type="email" required>
+            </div>
+            <div class="field-group">
+              <label for="type" data-i18n="label_type">Type object</label>
+              <select id="type" name="Type object" required>
+                <option value="" data-i18n="type_placeholder">Kies een type</option>
+                <option value="kavel" data-i18n="type_land">Kavel / grond</option>
+                <option value="woning" data-i18n="type_house">Woning</option>
+                <option value="appartement" data-i18n="type_apartment">Appartement</option>
+                <option value="bedrijfspand" data-i18n="type_commercial">Bedrijfspand</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="address" data-i18n="label_address">Adres object</label>
+            <input id="address" name="Adres object" type="text" required>
+          </div>
+
+          <div class="field-group">
+            <label for="price" data-i18n="label_price">Vraagprijs <span class="optional" data-i18n="optional">(optioneel)</span></label>
+            <input id="price" name="Vraagprijs" type="text">
+          </div>
+
+          <div class="field-group">
+            <label for="description" data-i18n="label_description">Omschrijving <span class="optional" data-i18n="optional">(optioneel)</span></label>
+            <textarea id="description" name="Omschrijving"></textarea>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn-primary" data-i18n="submit_btn">Verstuur aanmelding →</button>
+            <a href="https://wa.me/59995000000?text=Hoi%2C%20ik%20wil%20mijn%20object%20aanmelden%20op%20VendaCura%C3%A7ao" class="btn-secondary" target="_blank" rel="noopener" data-i18n="whatsapp_btn">WhatsApp eerst</a>
+          </div>
+          <p class="microcopy" data-i18n="microcopy">Gebruik je liever WhatsApp? Dat kan ook. Het placeholdernummer blijft voorlopig 59995000000.</p>
+        </form>
+      </div>
+
+      <aside class="info-card">
+        <h3 data-i18n="aside_title">Wat gebeurt er na je aanmelding?</h3>
+        <p data-i18n="aside_text">Wij controleren je gegevens, nemen contact met je op en zorgen dat je listing professioneel online komt te staan.</p>
+        <ul class="info-points">
+          <li data-i18n="aside_1">Reactie doorgaans binnen 24 uur</li>
+          <li data-i18n="aside_2">Drietalige presentatie mogelijk: NL / EN / PAP</li>
+          <li data-i18n="aside_3">Direct contact met serieuze kopers</li>
+          <li data-i18n="aside_4">Geen commissie op je verkoopprijs</li>
+        </ul>
+        <div class="contact-box">
+          <strong data-i18n="contact_title">Direct contact</strong>
+          <p><a href="mailto:info@vendacuracao.com">info@vendacuracao.com</a></p>
+          <p><a href="https://wa.me/59995000000" target="_blank" rel="noopener">WhatsApp: 59995000000</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <a href="/index.html" class="logo">Venda<span>Curaçao</span></a>
+    <p data-i18n="footer_copy">© 2026 VendaCuraçao · Particulier vastgoed op Curaçao</p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="/woningen.html" data-i18n="footer_listings">Aanbod</a>
+      <a href="/aanmelden.html" data-i18n="footer_signup">Aanmelden</a>
+    </div>
+  </footer>
+
+  <script>
+    const T = {
+      nl: {
+        nav_how:'Hoe het werkt', nav_pricing:'Tarieven', nav_listings:'Aanbod', nav_cta:'Meld je object aan →',
+        hero_badge:'Nieuw op Curaçao', hero_title:'Meld je vastgoed aan zonder makelaar', hero_text:'Gebruik dit korte formulier om je kavel, woning, appartement of bedrijfspand aan te melden. Wij nemen daarna contact met je op om je listing snel live te zetten.',
+        hero_card_title:'Wat je vandaag regelt', hero_card_1:'Je basisgegevens en contactgegevens', hero_card_2:'Adres en type object', hero_card_3:'Vraagprijs en extra toelichting', hero_card_4:'Directe verzending naar info@vendacuracao.com',
+        form_label:'Aanmeldformulier', form_title:'Vertel ons iets over je object', form_sub:'Na verzending opent je e-mailapp met alle ingevulde gegevens. Zo kunnen wij snel reageren zonder extra software of account.',
+        label_name:'Naam', label_phone:'WhatsApp / Telefoon', label_email:'E-mail', label_type:'Type object', label_address:'Adres object', label_price:'Vraagprijs ', label_description:'Omschrijving ',
+        optional:'(optioneel)', type_placeholder:'Kies een type', type_land:'Kavel / grond', type_house:'Woning', type_apartment:'Appartement', type_commercial:'Bedrijfspand',
+        submit_btn:'Verstuur aanmelding →', whatsapp_btn:'WhatsApp eerst', microcopy:'Gebruik je liever WhatsApp? Dat kan ook. Het placeholdernummer blijft voorlopig 59995000000.',
+        aside_title:'Wat gebeurt er na je aanmelding?', aside_text:'Wij controleren je gegevens, nemen contact met je op en zorgen dat je listing professioneel online komt te staan.',
+        aside_1:'Reactie doorgaans binnen 24 uur', aside_2:'Drietalige presentatie mogelijk: NL / EN / PAP', aside_3:'Direct contact met serieuze kopers', aside_4:'Geen commissie op je verkoopprijs',
+        contact_title:'Direct contact', footer_copy:'© 2026 VendaCuraçao · Particulier vastgoed op Curaçao', footer_listings:'Aanbod', footer_signup:'Aanmelden'
+      },
+      en: {
+        nav_how:'How it works', nav_pricing:'Pricing', nav_listings:'Listings', nav_cta:'List your property →',
+        hero_badge:'New in Curaçao', hero_title:'Submit your property without an agent', hero_text:'Use this short form to submit your land, house, apartment or commercial property. We will contact you afterwards and help put your listing live quickly.',
+        hero_card_title:'What you arrange today', hero_card_1:'Your personal and contact details', hero_card_2:'Address and property type', hero_card_3:'Asking price and extra details', hero_card_4:'Direct delivery to info@vendacuracao.com',
+        form_label:'Submission form', form_title:'Tell us about your property', form_sub:'After sending, your email app opens with all completed details. That lets us respond quickly without extra software or accounts.',
+        label_name:'Name', label_phone:'WhatsApp / Phone', label_email:'Email', label_type:'Property type', label_address:'Property address', label_price:'Asking price ', label_description:'Description ',
+        optional:'(optional)', type_placeholder:'Choose a type', type_land:'Land / plot', type_house:'House', type_apartment:'Apartment', type_commercial:'Commercial property',
+        submit_btn:'Send submission →', whatsapp_btn:'WhatsApp first', microcopy:'Prefer WhatsApp first? That works too. The placeholder number stays 59995000000 for now.',
+        aside_title:'What happens after your submission?', aside_text:'We review your details, contact you and make sure your listing goes online professionally.',
+        aside_1:'Usually a response within 24 hours', aside_2:'Trilingual presentation possible: NL / EN / PAP', aside_3:'Direct contact with serious buyers', aside_4:'No commission on your sale price',
+        contact_title:'Direct contact', footer_copy:'© 2026 VendaCuraçao · Private real estate in Curaçao', footer_listings:'Listings', footer_signup:'Submit property'
+      },
+      pap: {
+        nav_how:'Kòmo ta funkshoná', nav_pricing:'Tarifanan', nav_listings:'Propiedatnan', nav_cta:'Registrá bo propiedad →',
+        hero_badge:'Nobo na Korsou', hero_title:'Registrá bo propiedad sin makelaar', hero_text:'Usa e formulario kòrtiku aki pa registrá bo tereno, kas, apartamento of propiedad komersial. Despues nos ta kontaktá bo pa pone bo listing bibu rapidamente.',
+        hero_card_title:'Kiko bo ta regla awe', hero_card_1:'Bo informashon básiko i kontakto', hero_card_2:'Adres i tipo di propiedad', hero_card_3:'Preis di demanda i informashon adishonal', hero_card_4:'Manda direktamente na info@vendacuracao.com',
+        form_label:'Formulario di registrashon', form_title:'Konta nos un tiki tokante bo propiedad', form_sub:'Despues di manda, bo email app lo habri ku tur detayenan yena. Asina nos por respondé lihé sin software of kuenta adishonal.',
+        label_name:'Nòmber', label_phone:'WhatsApp / Telefòn', label_email:'Email', label_type:'Tipo di propiedad', label_address:'Adres di propiedad', label_price:'Preis di demanda ', label_description:'Deskripshon ',
+        optional:'(opshonal)', type_placeholder:'Skohé un tipo', type_land:'Tereno / grond', type_house:'Kas', type_apartment:'Apartamento', type_commercial:'Propiedad komersial',
+        submit_btn:'Manda registrashon →', whatsapp_btn:'Promé WhatsApp', microcopy:'Bo preferá WhatsApp promé? Esei tambe por. E número placeholder ta keda 59995000000 pa awor.',
+        aside_title:'Kiko ta sosodé despues di bo registrashon?', aside_text:'Nos ta kontrolá bo detalye, kontaktá bo i sòru ku bo listing ta bai online na un manera profeshonal.',
+        aside_1:'Normalmente reakshon den 24 ora', aside_2:'Presentashon trilingüe posibel: NL / EN / PAP', aside_3:'Kontakto direk ku kompradónan serio', aside_4:'Sin komishon riba bo preis di benta',
+        contact_title:'Kontakto direk', footer_copy:'© 2026 VendaCuraçao · Propiedad partikular na Korsou', footer_listings:'Propiedatnan', footer_signup:'Registrá'
+      }
+    };
+    function setLang(lang) {
+      const selected = T[lang] ? lang : 'pap';
+      const t = T[selected];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[k] !== undefined) el.innerHTML = t[k];
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.textContent.toLowerCase() === selected));
+      document.documentElement.lang = selected;
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', selected);
+      window.history.replaceState({}, '', url);
+    }
+    const initialLang = new URLSearchParams(window.location.search).get('lang') || 'pap';
+    setLang(initialLang);
+  </script>
+</body>
+</html>
