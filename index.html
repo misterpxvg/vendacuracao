@@ -475,10 +475,16 @@
     .social-proof-counter strong { font-size: 1.1rem; }
 
     /* ── FOOTER ── */
-    footer { background: var(--ink); padding: 2.5rem 5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer { background: var(--ink); padding: 2.5rem 5%; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr auto; gap: 2rem; align-items: start; }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.5rem; }
     footer .logo { color: var(--white); }
     footer .logo span { color: var(--teal); }
     footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); font-weight: 300; }
+    .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.45rem 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-lang { display: flex; align-items: flex-start; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
@@ -516,7 +522,9 @@
       .area-links { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
       .area-card h3 { font-size: 1.15rem; }
       .area-card p { font-size: 0.85rem; }
-      footer { flex-direction: column; text-align: center; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-links { grid-template-columns: repeat(2, 1fr); justify-items: center; }
+      .footer-lang { justify-content: center; }
       .trust-bar { gap: 1.2rem; }
     }
 
@@ -872,30 +880,34 @@
 
 <!-- FOOTER -->
 <footer>
-  <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;">
-  <div>
-  <a href="#" class="logo">Venda<span>Curaçao</span>
-    <span class="logo-flamingo">
-      <svg width="14" height="22" viewBox="0 0 80 130" fill="none"><path d="M38 112 C28 108 20 98 22 85 C24 72 36 66 50 70 C64 74 70 86 66 100 C62 112 50 118 38 112Z" fill="#E05C38"/><path d="M36 78 C34 65 28 50 24 36 C20 22 22 10 30 6 C38 2 48 8 50 18" stroke="#E05C38" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="48" cy="14" rx="10" ry="8" fill="#E05C38"/><path d="M36 115 L32 128 M32 128 L24 133 M32 128 L40 131" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/></svg>
-    </span>
-  </a>
-  <p data-i18n="footer_copy">© 2026 VendaCuraçao · Particulier vastgoed op Curaçao</p>
-  <div style="display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:0.55rem 1rem;max-width:520px;">
-    <a href="/woning-verkopen-curacao">Woning verkopen</a>
-    <a href="/kavel-verkopen-curacao">Kavel verkopen</a>
-    <a href="/for-sale-by-owner-curacao">FSBO Curaçao</a>
-    <a href="/kas-bende-korsou">Kas bende Kòrsou</a>
-    <a href="/emigreren-huis-kopen-curacao">Emigreren</a>
-    <a href="/vastgoed-investeren-curacao">Investeren</a>
-    <a href="/jan-thiel">Jan Thiel</a>
-    <a href="/blue-bay">Blue Bay</a>
-    <a href="/bandabou">Bandabou</a>
-  </div>
-  <div class="lang-bar">
-    <button class="lang-btn" onclick="setLang('nl')">NL</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
-    <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
-  </div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">Venda<span>Curaçao</span>
+        <span class="logo-flamingo">
+          <svg width="14" height="22" viewBox="0 0 80 130" fill="none"><path d="M38 112 C28 108 20 98 22 85 C24 72 36 66 50 70 C64 74 70 86 66 100 C62 112 50 118 38 112Z" fill="#E05C38"/><path d="M36 78 C34 65 28 50 24 36 C20 22 22 10 30 6 C38 2 48 8 50 18" stroke="#E05C38" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="48" cy="14" rx="10" ry="8" fill="#E05C38"/><path d="M36 115 L32 128 M32 128 L24 133 M32 128 L40 131" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </span>
+      </a>
+      <p data-i18n="footer_copy">© 2026 VendaCuraçao · Particulier vastgoed op Curaçao</p>
+    </div>
+    <div class="footer-links">
+      <a href="/woning-verkopen-curacao" data-i18n="fl_woning">Woning verkopen</a>
+      <a href="/kavel-verkopen-curacao" data-i18n="fl_kavel">Kavel verkopen</a>
+      <a href="/for-sale-by-owner-curacao">FSBO Curaçao</a>
+      <a href="/kas-bende-korsou">Kas bende Kòrsou</a>
+      <a href="/emigreren-huis-kopen-curacao" data-i18n="fl_emigreren">Emigreren</a>
+      <a href="/vastgoed-investeren-curacao" data-i18n="fl_investeren">Investeren</a>
+      <a href="/jan-thiel">Jan Thiel</a>
+      <a href="/blue-bay">Blue Bay</a>
+      <a href="/bandabou">Bandabou</a>
+      <a href="/blog" data-i18n="nav_blog">Blog</a>
+    </div>
+    <div class="footer-lang">
+      <div class="lang-bar">
+        <button class="lang-btn" onclick="setLang('nl')">NL</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -945,6 +957,7 @@ const T = {
     pricing_full_badge:"Compleet pakket",pricing_full_tier:"Full Service",pricing_full_name:"Verkoopassistent",pricing_full_price:"ANG 899",pricing_full_once:"Eenmalig + 1% bij verkoop",
     pricing_full_feature1:"Alles van Plus",pricing_full_feature2:"Professionele fotografie",pricing_full_feature3:"Waardetaxatie / prijsadvies",pricing_full_feature4:"Onderhandelingsadvies",pricing_full_feature5:"Notarislijst + begeleiding",pricing_full_feature6:"Onbeperkte looptijd",
     pricing_cta_free:"Start gratis →",pricing_cta_premium:"Kies Uitgelicht →",pricing_cta_full:"Plan mijn verkoopassistent →",
+    pricing_cta_start:"Start mijn verkoop →",pricing_cta_plus:"Kies Uitgelicht →",
     types_label:"Wat kun je aanbieden",types_title:"Alle soorten vastgoed op Curaçao",
     type1_h:"Kavel / Tereno",type1_p:"Bouwgrond, perceel of landbouwgrond — van Bandabou tot Blue Bay.",
     type2_h:"Woning",type2_p:"Villa, rijtjeshuis, vrijstaand — in alle buurten van Curaçao.",
@@ -955,7 +968,7 @@ const T = {
     faq2_q:"Wat als ik de vraagprijs niet weet?",faq2_a:"Weet je de vraagprijs niet zeker? Neem contact op via WhatsApp — wij sturen je binnen 24 uur een schatting op basis van vergelijkbare objecten in jouw buurt.",
     faq3_q:"Wat kost het?",faq3_a:"De startfee is ANG 399 eenmalig. Daarbovenop betaal je 1% commissie — maar alleen als je woning of kavel daadwerkelijk verkocht wordt.",
     faq4_q:"Hoe verschil ik van een makelaar?",faq4_a:"Een makelaar rekent 4% commissie. Op ANG 450.000 is dat ANG 18.000. Bij VendaCuraçao betaal je ANG 399 + 1% = ANG 4.899 totaal. Besparing: ANG 13.101.",
-    area_label:"Buurten op Curaçao",area_title:"Bekijk objecten per buurt",area_sub:"Verken populaire woongebieden en ontdek waar jouw koper zit.",area_jt:"Luxe, expats, strand & horeca.",area_bb:"Golfresort, rustig, gezinnen & verhuur.",area_ba:"Authentiek, groen, betaalbaar instappen.",
+    area_label:"Buurten op Curaçao",area_title:"Bekijk objecten per buurt",area_sub:"Verken populaire woongebieden en ontdek waar jouw koper zit.",area_jt:"Luxe, expats, strand & horeca.",area_bb:"Golfresort, rustig, gezinnen & verhuur.",area_ba:"Authentiek, groen, betaalbaar instappen.",fl_woning:"Woning verkopen",fl_kavel:"Kavel verkopen",fl_emigreren:"Emigreren",fl_investeren:"Investeren",
     cta_label:"Begin vandaag",cta_title:"Klaar om je kavel of woning aan te bieden?",
     cta_sub:"Lanceringsaanbod: eerste 25 objecten (kavels, woningen, appartementen) staan gratis en permanent online. Daarna geldt het standaardtarief.",
     cta_btn1:"Zet mijn kavel of huis online →",cta_btn2:"WhatsApp ons",
@@ -1000,6 +1013,7 @@ const T = {
     pricing_full_badge:"Complete package",pricing_full_tier:"Full Service",pricing_full_name:"Sales Assistant",pricing_full_price:"ANG 899",pricing_full_once:"One-time + 1% on sale",
     pricing_full_feature1:"Everything in Plus",pricing_full_feature2:"Professional photography",pricing_full_feature3:"Property valuation / pricing advice",pricing_full_feature4:"Negotiation guidance",pricing_full_feature5:"Notary list + support",pricing_full_feature6:"Unlimited listing duration",
     pricing_cta_free:"Start free →",pricing_cta_premium:"Choose Featured →",pricing_cta_full:"Plan my sales assistant →",
+    pricing_cta_start:"Start mijn verkoop →",pricing_cta_plus:"Kies Uitgelicht →",
     types_label:"What you can list",types_title:"All types of Curaçao real estate",
     type1_h:"Land / Plot",type1_p:"Building plot, agricultural land or development site — Bandabou to Blue Bay.",
     type2_h:"House",type2_p:"Villa, townhouse, detached — in all neighbourhoods of Curaçao.",
@@ -1010,7 +1024,7 @@ const T = {
     faq2_q:"What if I don't know my price?",faq2_a:"Not sure about your asking price? Contact us via WhatsApp — we'll send you an estimate within 24 hours based on comparable properties in your area.",
     faq3_q:"What does it cost?",faq3_a:"The start fee is ANG 399 one-time. On top you pay 1% commission — but only when your property actually sells.",
     faq4_q:"How is this different from an agent?",faq4_a:"An agent charges 4% commission. On ANG 450,000 that's ANG 18,000. With VendaCuraçao you pay ANG 399 + 1% = ANG 4,899 total. You save ANG 13,101.",
-    area_label:"Neighborhoods in Curaçao",area_title:"Browse properties by area",area_sub:"Explore popular areas and find where your buyer is.",area_jt:"Luxury, expats, beach & dining.",area_bb:"Golf resort, quiet, families & rentals.",area_ba:"Authentic, green, affordable entry.",
+    area_label:"Neighborhoods in Curaçao",area_title:"Browse properties by area",area_sub:"Explore popular areas and find where your buyer is.",area_jt:"Luxury, expats, beach & dining.",area_bb:"Golf resort, quiet, families & rentals.",area_ba:"Authentic, green, affordable entry.",fl_woning:"Sell property",fl_kavel:"Sell land",fl_emigreren:"Emigrate",fl_investeren:"Invest",
     cta_label:"Get started today",cta_title:"Ready to list your land or property?",
     cta_sub:"Launch offer: first 25 listings (land, houses, apartments) are free and permanently online. Standard rates apply after.",
     cta_btn1:"List my land or property →",cta_btn2:"WhatsApp us",
@@ -1055,6 +1069,7 @@ const T = {
     pricing_full_badge:"Pakete komplet",pricing_full_tier:"Full Service",pricing_full_name:"Asistente di Benta",pricing_full_price:"ANG 899",pricing_full_once:"Un biaha + 1% ora di benta",
     pricing_full_feature1:"Tur kos di Plus",pricing_full_feature2:"Fotografia profeshonal",pricing_full_feature3:"Valuashon / konseho di preis",pricing_full_feature4:"Konseho pa negoshiá",pricing_full_feature5:"Lista di notarionan + guia",pricing_full_feature6:"Durashon ilimitá",
     pricing_cta_free:"Kuminsá gratis →",pricing_cta_premium:"Skohé Destaká →",pricing_cta_full:"Plania mi asistente di benta →",
+    pricing_cta_start:"Start mijn verkoop →",pricing_cta_plus:"Kies Uitgelicht →",
     types_label:"Kiko bo por ofresé",types_title:"Tur tipo di propiedad na Korsou",
     type1_h:"Tereno / Parsel",type1_p:"Tereno di konstrukshon of agrikultura — for di Bandabou te Blue Bay.",
     type2_h:"Kas",type2_p:"Villa, kas di renchi, kas liber — na tur bario di Korsou.",
@@ -1065,7 +1080,7 @@ const T = {
     faq2_q:"Kiko si mi no sa e preis?",faq2_a:"No seguro di bo preis? Kontaktá nos via WhatsApp — nos ta mandabo un estimashon den 24 ora basá riba propiedadnan similar na bo bario.",
     faq3_q:"Kiko ta e kosto?",faq3_a:"E startfee ta ANG 399 un biaha. Ademas bo ta paga 1% komishon — pero solamente ora bo propiedad bende.",
     faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.",
-    area_label:"Barionan na Kòrsou",area_title:"Mira propiedatnan pa bario",area_sub:"Eksplora barionan populá i haña unda bo komprador ta.",area_jt:"Luho, expats, playa \faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.", restorant.",area_bb:"Golf resort, trankil, famia \faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.", hür.",area_ba:"Outéntiko, bèrdè, preis aksesibel.",
+    area_label:"Barionan na Kòrsou",area_title:"Mira propiedatnan pa bario",area_sub:"Eksplora barionan populá i haña unda bo komprador ta.",area_jt:"Luho, expats, playa \faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.", restorant.",area_bb:"Golf resort, trankil, famia \faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.", hür.",area_ba:"Outéntiko, bèrdè, preis aksesibel.",fl_woning:"Bende kas",fl_kavel:"Bende tereno",fl_emigreren:"Emigrá",fl_investeren:"Invertí",
     cta_label:"Kuminsá awe",cta_title:"Kla pa pone bo tereno of kas na benta?",
     cta_sub:"Oferta di lansamentu: promer 25 propiedad (tereno, kas, apartamento) ta gratis i permanente online. Despues tarifa standard ta konta.",
     cta_btn1:"Pone mi tereno of kas online →",cta_btn2:"WhatsApp nos",
