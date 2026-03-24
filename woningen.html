@@ -9,11 +9,12 @@
   <meta name="robots" content="index, follow">
   <meta name="geo.region" content="CW">
   <meta name="geo.placename" content="Willemstad">
-  <link rel="canonical" href="https://vendacuracao.com/woningen">
+  <link rel="canonical" href="https://vendacuracao.com/woningen.html">
   <meta property="og:title" content="Woningen & Kavels te Koop — VendaCuraçao">
   <meta property="og:description" content="Particulier vastgoed aanbod op Curaçao. Zonder makelaar, zonder commissie.">
-  <meta property="og:url" content="https://vendacuracao.com/woningen">
+  <meta property="og:url" content="https://vendacuracao.com/woningen.html">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1648426676079-55b638a36a5f?w=1200&h=630&fit=crop">
   <meta property="og:site_name" content="VendaCuraçao">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,6 +38,14 @@
     .nav-links a { text-decoration:none; color:var(--ink-soft); font-size:0.92rem; font-weight:500; }
     .nav-links a:hover { color:var(--teal); }
     .nav-cta { background:var(--coral); color:var(--white)!important; padding:0.6rem 1.15rem; border-radius:8px; }
+    .nav-actions { display:flex; align-items:center; gap:1rem; }
+    .nav-toggle { display:none; width:46px; height:46px; border:none; border-radius:14px; background:rgba(8,145,178,0.1); color:var(--ink); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:5px; }
+    .nav-toggle span { width:20px; height:2px; border-radius:999px; background:currentColor; transition:transform .25s ease, opacity .2s ease; }
+    body.nav-open .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    body.nav-open .nav-toggle span:nth-child(2) { opacity:0; }
+    body.nav-open .nav-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .nav-close { display:none; }
+    .nav-overlay { position:fixed; inset:0; background:rgba(26,35,50,0.34); backdrop-filter:blur(4px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .25s ease, visibility .25s ease; z-index:95; }
     .lang-bar { display:flex; gap:0.4rem; }
     .lang-btn { border:1px solid rgba(8,145,178,0.2); background:rgba(255,255,255,0.75); color:var(--ink); padding:0.45rem 0.7rem; border-radius:999px; cursor:pointer; font-size:0.8rem; }
     .lang-btn.active { background:var(--teal); color:var(--white); border-color:var(--teal); }
@@ -71,7 +80,14 @@
     footer p, footer a { color:rgba(255,255,255,0.68); text-decoration:none; font-size:0.9rem; }
     @media (max-width:960px) {
       .hero-inner { grid-template-columns:1fr; }
-      .nav-links { display:none; }
+      .nav-toggle { display:flex; }
+      .nav-links { position:fixed; top:0; right:0; height:100vh; width:min(360px,88vw); padding:5.5rem 1.4rem 1.6rem; background:var(--sand); border-left:1px solid rgba(8,145,178,0.12); box-shadow:-20px 0 50px rgba(26,35,50,0.18); flex-direction:column; align-items:flex-start; gap:.2rem; overflow-y:auto; transform:translateX(100%); transition:transform .3s ease; z-index:110; display:flex; }
+      .nav-links li { width:100%; }
+      .nav-links > li > a { width:100%; display:block; padding:.95rem .3rem; font-size:1rem; }
+      .nav-links .nav-cta { display:inline-flex; justify-content:center; width:100%; margin-top:.55rem; }
+      .nav-close { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:16px; right:16px; width:42px; height:42px; border:none; border-radius:12px; background:rgba(8,145,178,0.1); color:var(--ink); cursor:pointer; font-size:1.5rem; }
+      body.nav-open .nav-links { transform:translateX(0); }
+      body.nav-open .nav-overlay { opacity:1; visibility:visible; pointer-events:auto; }
     }
     @media (max-width:600px) {
       footer { flex-direction:column; text-align:center; }
@@ -82,10 +98,13 @@
 <body>
   <nav>
     <a href="/index.html" class="logo">Venda<span>Curaçao</span></a>
-    <ul class="nav-links">
+    <div class="nav-actions">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="site-menu">
+      <li><button class="nav-close" type="button" aria-label="Close menu">×</button></li>
       <li><a href="/index.html#hoe" data-i18n="nav_how">Hoe het werkt</a></li>
       <li><a href="/index.html#pricing" data-i18n="nav_pricing">Prijzen</a></li>
-      <li><a href="/blog" data-i18n="nav_blog">Blog</a></li>
+      <li><a href="/blog/" data-i18n="nav_blog">Blog</a></li>
       <li><a href="/woningen.html" data-i18n="nav_listings">Aanbod</a></li>
       <li><a href="/aanmelden.html" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
     </ul>
@@ -94,7 +113,9 @@
       <button class="lang-btn" onclick="setLang('en')">EN</button>
       <button class="lang-btn active" onclick="setLang('pap')">PAP</button>
     </div>
+    </div>
   </nav>
+  <div class="nav-overlay" hidden></div>
 
   <section class="hero">
     <div class="hero-inner">
@@ -168,6 +189,17 @@
       window.history.replaceState({}, '', url);
     }
     const initialLang = new URLSearchParams(window.location.search).get('lang') || 'pap';
+    const navToggle = document.querySelector('.nav-toggle');
+    const navClose = document.querySelector('.nav-close');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navMenu = document.querySelector('.nav-links');
+    const closeNav = () => { document.body.classList.remove('nav-open'); navToggle?.setAttribute('aria-expanded', 'false'); navOverlay?.setAttribute('hidden', 'hidden'); };
+    const openNav = () => { document.body.classList.add('nav-open'); navToggle?.setAttribute('aria-expanded', 'true'); navOverlay?.removeAttribute('hidden'); };
+    navToggle?.addEventListener('click', () => document.body.classList.contains('nav-open') ? closeNav() : openNav());
+    navClose?.addEventListener('click', closeNav);
+    navOverlay?.addEventListener('click', closeNav);
+    navMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
     setLang(initialLang);
   </script>
 </body>
