@@ -469,14 +469,18 @@
       .img-break { background-attachment: scroll; }
     }
     @media (max-width: 600px) {
-      .pricing-grid { max-width: 100%; }
-      .pricing-card { padding: 1.6rem 1.2rem; }
-      .pricing-name { font-size: 1.5rem; }
-      .pricing-price { font-size: 1.7rem; }
-      .pricing-badge { top: -12px; font-size: 0.68rem; padding: 0.35rem 0.75rem; }
+      .pricing-grid { max-width: 100%; gap: 1.4rem; }
+      .pricing-card { padding: 1.4rem 1.1rem; }
+      .pricing-name { font-size: 1.3rem; }
+      .pricing-price { font-size: 1.5rem; margin: 0.3rem 0; }
+      .pricing-once { font-size: 0.82rem; margin-bottom: 0.6rem; }
+      .pricing-tier { font-size: 0.7rem; margin-bottom: 0.2rem; }
+      .pricing-badge { top: -11px; font-size: 0.65rem; padding: 0.3rem 0.7rem; }
+      .pricing-features { gap: 0.35rem; font-size: 0.88rem; }
+      .pricing-features li { padding: 0.25rem 0; }
+      .pricing-card .btn-primary, .pricing-card .btn-light { font-size: 0.9rem; padding: 0.7rem 1rem; }
       .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
       .types-grid { grid-template-columns: 1fr; }
-      .pricing-card { padding: 1.8rem 1.4rem; }
       footer { flex-direction: column; text-align: center; }
       .trust-bar { gap: 1.2rem; }
     }
@@ -896,7 +900,7 @@ const T = {
     pricing_plus_badge:"Meest gekozen",pricing_plus_tier:"Plus",pricing_plus_name:"Uitgelicht",pricing_plus_price:"ANG 599",pricing_plus_once:"Eenmalig + 1% bij verkoop",
     pricing_plus_feature1:"Alles van Start",pricing_plus_feature2:"Bovenaan in zoekresultaten",pricing_plus_feature3:"Tot 20 foto's",pricing_plus_feature4:"Social media promotie",pricing_plus_feature5:"Professionele tekstreview",pricing_plus_feature6:"Onbeperkte looptijd",
     pricing_full_badge:"Compleet pakket",pricing_full_tier:"Full Service",pricing_full_name:"Verkoopassistent",pricing_full_price:"ANG 899",pricing_full_once:"Eenmalig + 1% bij verkoop",
-    pricing_full_feature1:"Alles van Plus",pricing_full_feature2:"Professionele fotografie",pricing_full_feature3:"Waardetaxatie / prijsadvies",pricing_full_feature4:"Onderhandelingsadvies",pricing_full_feature5:"Notarislijst + begeleiding",
+    pricing_full_feature1:"Alles van Plus",pricing_full_feature2:"Professionele fotografie",pricing_full_feature3:"Waardetaxatie / prijsadvies",pricing_full_feature4:"Onderhandelingsadvies",pricing_full_feature5:"Notarislijst + begeleiding",pricing_full_feature6:"Onbeperkte looptijd",
     pricing_cta_free:"Start gratis →",pricing_cta_premium:"Kies Uitgelicht →",pricing_cta_full:"Plan mijn verkoopassistent →",
     types_label:"Wat kun je aanbieden",types_title:"Alle soorten vastgoed op Curaçao",
     type1_h:"Kavel / Tereno",type1_p:"Bouwgrond, perceel of landbouwgrond — van Bandabou tot Blue Bay.",
@@ -950,7 +954,7 @@ const T = {
     pricing_plus_badge:"Most chosen",pricing_plus_tier:"Plus",pricing_plus_name:"Featured",pricing_plus_price:"ANG 599",pricing_plus_once:"One-time + 1% on sale",
     pricing_plus_feature1:"Everything in Start",pricing_plus_feature2:"Top placement in search results",pricing_plus_feature3:"Up to 20 photos",pricing_plus_feature4:"Social media promotion",pricing_plus_feature5:"Professional copy review",pricing_plus_feature6:"Unlimited listing duration",
     pricing_full_badge:"Complete package",pricing_full_tier:"Full Service",pricing_full_name:"Sales Assistant",pricing_full_price:"ANG 899",pricing_full_once:"One-time + 1% on sale",
-    pricing_full_feature1:"Everything in Plus",pricing_full_feature2:"Professional photography",pricing_full_feature3:"Property valuation / pricing advice",pricing_full_feature4:"Negotiation guidance",pricing_full_feature5:"Notary list + support",
+    pricing_full_feature1:"Everything in Plus",pricing_full_feature2:"Professional photography",pricing_full_feature3:"Property valuation / pricing advice",pricing_full_feature4:"Negotiation guidance",pricing_full_feature5:"Notary list + support",pricing_full_feature6:"Unlimited listing duration",
     pricing_cta_free:"Start free →",pricing_cta_premium:"Choose Featured →",pricing_cta_full:"Plan my sales assistant →",
     types_label:"What you can list",types_title:"All types of Curaçao real estate",
     type1_h:"Land / Plot",type1_p:"Building plot, agricultural land or development site — Bandabou to Blue Bay.",
@@ -1004,7 +1008,7 @@ const T = {
     pricing_plus_badge:"Mas skohe",pricing_plus_tier:"Plus",pricing_plus_name:"Destaká",pricing_plus_price:"ANG 599",pricing_plus_once:"Un biaha + 1% ora di benta",
     pricing_plus_feature1:"Tur kos di Start",pricing_plus_feature2:"Na kabes di resultadonan di buskeda",pricing_plus_feature3:"Te na 20 potrèt",pricing_plus_feature4:"Promoshon riba social media",pricing_plus_feature5:"Rekushon profeshonal di teksto",pricing_plus_feature6:"Durashon ilimitá",
     pricing_full_badge:"Pakete komplet",pricing_full_tier:"Full Service",pricing_full_name:"Asistente di Benta",pricing_full_price:"ANG 899",pricing_full_once:"Un biaha + 1% ora di benta",
-    pricing_full_feature1:"Tur kos di Plus",pricing_full_feature2:"Fotografia profeshonal",pricing_full_feature3:"Valuashon / konseho di preis",pricing_full_feature4:"Konseho pa negoshiá",pricing_full_feature5:"Lista di notarionan + guia",
+    pricing_full_feature1:"Tur kos di Plus",pricing_full_feature2:"Fotografia profeshonal",pricing_full_feature3:"Valuashon / konseho di preis",pricing_full_feature4:"Konseho pa negoshiá",pricing_full_feature5:"Lista di notarionan + guia",pricing_full_feature6:"Durashon ilimitá",
     pricing_cta_free:"Kuminsá gratis →",pricing_cta_premium:"Skohé Destaká →",pricing_cta_full:"Plania mi asistente di benta →",
     types_label:"Kiko bo por ofresé",types_title:"Tur tipo di propiedad na Korsou",
     type1_h:"Tereno / Parsel",type1_p:"Tereno di konstrukshon of agrikultura — for di Bandabou te Blue Bay.",
