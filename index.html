@@ -325,11 +325,45 @@
     /* ── TRUST BAR ── */
     .trust-bar {
       background: var(--green); color: rgba(255,255,255,0.85);
-      padding: 1.1rem 5%; display: flex; gap: 2.5rem; flex-wrap: wrap; font-size: 0.82rem;
+      padding: 1.1rem 5%; display: flex; justify-content: center; gap: 2rem 3rem; flex-wrap: wrap; font-size: 0.82rem;
     }
     .trust-bar span { display: flex; align-items: center; gap: 0.5rem; }
     .trust-bar strong { color: var(--white); font-weight: 600; }
     .trust-bar em { font-style: normal; color: rgba(255,255,255,0.72); font-size: 0.88em; }
+
+    /* ── TRUST BADGES ── */
+    .trust-badges {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2.5rem;
+      padding: 1.8rem 5%; background: var(--sand);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .trust-badge-item {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.88rem; color: var(--ink-soft); font-weight: 400;
+    }
+    .trust-badge-item strong { color: var(--teal); font-weight: 700; font-size: 1.1rem; }
+
+    /* ── SCROLL SAVINGS BANNER ── */
+    .scroll-savings-banner {
+      position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+      background: var(--white); border: 1px solid rgba(8,145,178,0.15);
+      border-radius: 16px; padding: 0.8rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      z-index: 90; max-width: 500px; width: calc(100% - 2rem);
+      animation: fadeSlideUp 0.4s ease;
+    }
+    .scroll-savings-banner[hidden] { display: none; }
+    .scroll-savings-close {
+      position: absolute; top: -8px; right: -8px;
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1); background: var(--white);
+      font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: #888; transition: background 0.2s;
+    }
+    .scroll-savings-close:hover { background: #f0f0f0; }
+    .scroll-savings-copy { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; }
+    .scroll-savings-text { font-size: 0.9rem; color: var(--ink); }
+    .scroll-savings-link { font-size: 0.9rem; color: var(--teal); font-weight: 600; text-decoration: none; white-space: nowrap; }
+    @keyframes fadeSlideUp { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
 
     /* ── SECTION BASE ── */
     section { padding: 90px 5%; }
@@ -338,7 +372,7 @@
     .section-sub { font-size: 1rem; color: var(--ink-soft); font-weight: 300; max-width: 500px; line-height: 1.75; }
 
     /* ── HOW ── */
-    .how { background: var(--white); }
+    .how { background: var(--white); position: relative; }
     .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
     .how-card {
       padding: 2rem; background: var(--sand); border-radius: 14px;
@@ -578,7 +612,9 @@
       .footer-inner { grid-template-columns: 1fr; text-align: center; }
       .footer-links { grid-template-columns: repeat(2, 1fr); justify-items: center; }
       .footer-lang { justify-content: center; }
-      .trust-bar { gap: 1.2rem; }
+      .trust-bar { gap: 0.8rem 1.5rem; font-size: 0.75rem; justify-content: center; }
+      .trust-badges { gap: 0.8rem 1.5rem; padding: 1.2rem 5%; }
+      .trust-badge-item { font-size: 0.8rem; }
     }
 
     /* ── WHATSAPP FLOAT ── */
