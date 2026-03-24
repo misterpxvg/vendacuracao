@@ -307,6 +307,7 @@
     }
     .trust-bar span { display: flex; align-items: center; gap: 0.5rem; }
     .trust-bar strong { color: var(--white); font-weight: 600; }
+    .trust-bar em { font-style: normal; color: rgba(255,255,255,0.72); font-size: 0.88em; }
 
     /* ── SECTION BASE ── */
     section { padding: 90px 5%; }
@@ -591,10 +592,10 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <span>✅ <strong data-i18n="trust1">ANG 399 startfee</strong> — geen abonnement</span>
-  <span>⚠️ <strong data-i18n="trust2">Bespaar tot ANG 13.500</strong> — 1% i.p.v. 4% commissie</span>
-  <span>✅ <strong data-i18n="trust3">Direct contact</strong> — kopers bellen jou</span>
-  <span>✅ <strong data-i18n="trust4">Jij bepaalt alles</strong> — prijs, tijdstip, koper</span>
+  <span>✅ <strong data-i18n="trust1">ANG 399 startfee</strong> <em data-i18n="trust1_sub">— geen abonnement</em></span>
+  <span>⚠️ <strong data-i18n="trust2">Bespaar tot ANG 13.500</strong> <em data-i18n="trust2_sub">— 1% i.p.v. 4% commissie</em></span>
+  <span>✅ <strong data-i18n="trust3">Direct contact</strong> <em data-i18n="trust3_sub">— kopers bellen jou</em></span>
+  <span>✅ <strong data-i18n="trust4">Jij bepaalt alles</strong> <em data-i18n="trust4_sub">— prijs, tijdstip, koper</em></span>
 </div>
 
 <!-- HOW -->
@@ -867,7 +868,7 @@ const T = {
     hero_p:"Meld je kavel, grond of woning aan vanaf ANG 399. Kopers nemen direct contact op. Slechts 1% bij verkoop — een makelaar rekent 4%.<br><strong style='color:#E05C38'>⚠️ Bespaar tot ANG 13.100 t.o.v. een makelaar.</strong>",
     hero_cta:"Meld je kavel of woning gratis aan →",hero_wa:"WhatsApp ons",
     stat1_l:"Bespaar tot",stat2_l:"Commissie",stat3_l:"Online binnen",
-    trust1:"ANG 399 startfee",trust2:"Bespaar tot ANG 13.500",trust3:"Direct contact",trust4:"Jij bepaalt alles",
+    trust1:"ANG 399 startfee",trust1_sub:"— geen abonnement",trust2:"Bespaar tot ANG 13.500",trust2_sub:"— 1% i.p.v. 4% commissie",trust3:"Direct contact",trust3_sub:"— kopers bellen jou",trust4:"Jij bepaalt alles",trust4_sub:"— prijs, tijdstip, koper",
     how_label:"Zo eenvoudig werkt het",how_title:"3 stappen en je object staat online",
     how_sub:"Geen makelaarscontract. Geen ingewikkeld gedoe. Gewoon aanmelden en klaar.",
     step1_num:"Stap 1 — 3 minuten",step1_h:"Meld je kavel of woning aan",
@@ -921,7 +922,7 @@ const T = {
     hero_p:"List your land, plot or property from ANG 399. Buyers contact you directly. Only 1% on sale — agents charge 4%.<br><strong style='color:#E05C38'>⚠️ Save up to ANG 13,100 vs a real estate agent.</strong>",
     hero_cta:"List your land or property for free →",hero_wa:"WhatsApp us",
     stat1_l:"Save up to",stat2_l:"Commission",stat3_l:"Online within",
-    trust1:"ANG 399 start fee",trust2:"Save up to ANG 13,500",trust3:"Direct contact",trust4:"You control everything",
+    trust1:"ANG 399 start fee",trust1_sub:"— no subscription",trust2:"Save up to ANG 13,500",trust2_sub:"— 1% instead of 4% commission",trust3:"Direct contact",trust3_sub:"— buyers call you",trust4:"You control everything",trust4_sub:"— price, timing, buyer",
     how_label:"Simple process",how_title:"3 steps and your property is online",
     how_sub:"No agent contract. No complicated paperwork. Just list your property and you're done.",
     step1_num:"Step 1 — 3 minutes",step1_h:"Submit your property",
@@ -975,7 +976,7 @@ const T = {
     hero_p:"Registrá bo tereno, grond of kas desde ANG 399. Kompradornan ta kontaktá bo direk. Solamente 1% ora di benta — un makelaar ta kobra 4%.<br><strong style='color:#E05C38'>⚠️ Spaar te ku ANG 13.100 kompará ku un makelaar.</strong>",
     hero_cta:"Registrá bo tereno of kas gratis →",hero_wa:"WhatsApp nos",
     stat1_l:"Spar te",stat2_l:"Komishon",stat3_l:"Online den",
-    trust1:"ANG 399 startfee",trust2:"Spaar te ku ANG 13.500",trust3:"Kontakto direk",trust4:"Bo determina tur kos",
+    trust1:"ANG 399 startfee",trust1_sub:"— sin abonamento",trust2:"Spaar te ku ANG 13.500",trust2_sub:"— 1% en bes di 4% komishon",trust3:"Kontakto direk",trust3_sub:"— kompradornan ta yama bo",trust4:"Bo determina tur kos",trust4_sub:"— preis, tempu, komprador",
     how_label:"Asina fasil ta funkshoná",how_title:"3 paso i bo kas ta online",
     how_sub:"Sin kontrato ku makler. Sin komplikashon. Simplemente registrá bo kas i ta kla.",
     step1_num:"Paso 1 — 3 minùt",step1_h:"Registrá bo tereno of kas",
