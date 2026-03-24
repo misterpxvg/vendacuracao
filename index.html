@@ -513,6 +513,9 @@
       .pricing-card .btn-primary, .pricing-card .btn-light { font-size: 0.9rem; padding: 0.7rem 1rem; }
       .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
       .types-grid { grid-template-columns: 1fr; }
+      .area-links { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .area-card h3 { font-size: 1.15rem; }
+      .area-card p { font-size: 0.85rem; }
       footer { flex-direction: column; text-align: center; }
       .trust-bar { gap: 1.2rem; }
     }
@@ -532,9 +535,10 @@
     .nav-dropdown-menu a { display:block; padding:0.7rem 0.8rem; border-radius:10px; }
     .nav-dropdown-menu a:hover { background:var(--teal-light); }
     .area-links { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:1rem; margin-top:2rem; }
-    .area-card { background:var(--white); border:1px solid rgba(8,145,178,0.12); border-radius:18px; padding:1.5rem; text-decoration:none; color:var(--ink); box-shadow:0 16px 38px rgba(26,35,50,0.06); }
-    .area-card h3 { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:0.55rem; }
-    .area-card p { color:var(--ink-soft); }
+    .area-card { background:var(--white); border:1px solid rgba(8,145,178,0.12); border-radius:18px; padding:1.5rem; text-decoration:none; color:var(--ink); box-shadow:0 16px 38px rgba(26,35,50,0.06); transition:transform 0.2s,box-shadow 0.2s; }
+    .area-card:hover { transform:translateY(-3px); box-shadow:0 20px 44px rgba(26,35,50,0.1); }
+    .area-card h3 { font-family:'Playfair Display',serif; font-size:1.25rem; margin-bottom:0.4rem; }
+    .area-card p { color:var(--ink-soft); font-size:0.9rem; line-height:1.45; }
     .wa-float svg { width: 32px; height: 32px; fill: #fff; }
   </style>
 </head>
@@ -814,13 +818,13 @@
 
 <!-- AREAS -->
 <section class="types" id="buurten">
-  <div class="section-label">Buurten op Curaçao</div>
-  <h2 class="section-title">Bekijk objecten per buurt</h2>
-  <p class="section-sub">Verken populaire woongebieden op Curaçao en ontdek waar jouw volgende koper of woningmatch zit.</p>
+  <div class="section-label" data-i18n="area_label">Buurten op Curaçao</div>
+  <h2 class="section-title" data-i18n="area_title">Bekijk objecten per buurt</h2>
+  <p class="section-sub" data-i18n="area_sub">Verken populaire woongebieden en ontdek waar jouw koper zit.</p>
   <div class="area-links">
-    <a class="area-card" href="/jan-thiel"><h3>Jan Thiel</h3><p>Luxe, expat-populair, strand en horeca met premium uitstraling.</p></a>
-    <a class="area-card" href="/blue-bay"><h3>Blue Bay</h3><p>Golfresort, rustig, familiegericht en sterk voor eigen gebruik of verhuur.</p></a>
-    <a class="area-card" href="/bandabou"><h3>Bandabou</h3><p>Authentiek, groen en ruim opgezet met aantrekkelijker instapniveau.</p></a>
+    <a class="area-card" href="/jan-thiel"><h3>Jan Thiel</h3><p data-i18n="area_jt">Luxe, expats, strand & horeca.</p></a>
+    <a class="area-card" href="/blue-bay"><h3>Blue Bay</h3><p data-i18n="area_bb">Golfresort, rustig, gezinnen & verhuur.</p></a>
+    <a class="area-card" href="/bandabou"><h3>Bandabou</h3><p data-i18n="area_ba">Authentiek, groen, betaalbaar instappen.</p></a>
   </div>
 </section>
 
@@ -951,6 +955,7 @@ const T = {
     faq2_q:"Wat als ik de vraagprijs niet weet?",faq2_a:"Weet je de vraagprijs niet zeker? Neem contact op via WhatsApp — wij sturen je binnen 24 uur een schatting op basis van vergelijkbare objecten in jouw buurt.",
     faq3_q:"Wat kost het?",faq3_a:"De startfee is ANG 399 eenmalig. Daarbovenop betaal je 1% commissie — maar alleen als je woning of kavel daadwerkelijk verkocht wordt.",
     faq4_q:"Hoe verschil ik van een makelaar?",faq4_a:"Een makelaar rekent 4% commissie. Op ANG 450.000 is dat ANG 18.000. Bij VendaCuraçao betaal je ANG 399 + 1% = ANG 4.899 totaal. Besparing: ANG 13.101.",
+    area_label:"Buurten op Curaçao",area_title:"Bekijk objecten per buurt",area_sub:"Verken populaire woongebieden en ontdek waar jouw koper zit.",area_jt:"Luxe, expats, strand & horeca.",area_bb:"Golfresort, rustig, gezinnen & verhuur.",area_ba:"Authentiek, groen, betaalbaar instappen.",
     cta_label:"Begin vandaag",cta_title:"Klaar om je kavel of woning aan te bieden?",
     cta_sub:"Lanceringsaanbod: eerste 25 objecten (kavels, woningen, appartementen) staan gratis en permanent online. Daarna geldt het standaardtarief.",
     cta_btn1:"Zet mijn kavel of huis online →",cta_btn2:"WhatsApp ons",
@@ -1005,6 +1010,7 @@ const T = {
     faq2_q:"What if I don't know my price?",faq2_a:"Not sure about your asking price? Contact us via WhatsApp — we'll send you an estimate within 24 hours based on comparable properties in your area.",
     faq3_q:"What does it cost?",faq3_a:"The start fee is ANG 399 one-time. On top you pay 1% commission — but only when your property actually sells.",
     faq4_q:"How is this different from an agent?",faq4_a:"An agent charges 4% commission. On ANG 450,000 that's ANG 18,000. With VendaCuraçao you pay ANG 399 + 1% = ANG 4,899 total. You save ANG 13,101.",
+    area_label:"Neighborhoods in Curaçao",area_title:"Browse properties by area",area_sub:"Explore popular areas and find where your buyer is.",area_jt:"Luxury, expats, beach & dining.",area_bb:"Golf resort, quiet, families & rentals.",area_ba:"Authentic, green, affordable entry.",
     cta_label:"Get started today",cta_title:"Ready to list your land or property?",
     cta_sub:"Launch offer: first 25 listings (land, houses, apartments) are free and permanently online. Standard rates apply after.",
     cta_btn1:"List my land or property →",cta_btn2:"WhatsApp us",
@@ -1059,6 +1065,7 @@ const T = {
     faq2_q:"Kiko si mi no sa e preis?",faq2_a:"No seguro di bo preis? Kontaktá nos via WhatsApp — nos ta mandabo un estimashon den 24 ora basá riba propiedadnan similar na bo bario.",
     faq3_q:"Kiko ta e kosto?",faq3_a:"E startfee ta ANG 399 un biaha. Ademas bo ta paga 1% komishon — pero solamente ora bo propiedad bende.",
     faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.",
+    area_label:"Barionan na Kòrsou",area_title:"Mira propiedatnan pa bario",area_sub:"Eksplora barionan populá i haña unda bo komprador ta.",area_jt:"Luho, expats, playa \faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.", restorant.",area_bb:"Golf resort, trankil, famia \faq4_q:"Kon e ta diferente di un makelaar?",faq4_a:"Un makelaar ta kobra 4% komishon. Riba ANG 450.000 esaki ta ANG 18.000. Na VendaCuraçao bo ta paga ANG 399 + 1% = ANG 4.899 total. Bo ta spaar ANG 13.101.", hür.",area_ba:"Outéntiko, bèrdè, preis aksesibel.",
     cta_label:"Kuminsá awe",cta_title:"Kla pa pone bo tereno of kas na benta?",
     cta_sub:"Oferta di lansamentu: promer 25 propiedad (tereno, kas, apartamento) ta gratis i permanente online. Despues tarifa standard ta konta.",
     cta_btn1:"Pone mi tereno of kas online →",cta_btn2:"WhatsApp nos",
