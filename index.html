@@ -487,6 +487,28 @@
     .footer-links a:hover { color: var(--teal) !important; }
     .footer-lang { display: flex; align-items: flex-start; }
 
+    /* ── COMPARISON TABLE ── */
+    .comparison-section { padding: 4rem 5%; }
+    .comparison-table-wrap { max-width: 700px; margin: 2rem auto 0; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 24px rgba(26,35,50,0.08); }
+    .comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .comparison-table thead th { background: var(--ink); color: var(--white); padding: 1rem 1.2rem; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; text-align: left; }
+    .comparison-table thead th:last-child { background: var(--teal); color: var(--white); }
+    .comparison-table tbody td { padding: 0.85rem 1.2rem; font-size: 0.95rem; border-bottom: 1px solid rgba(0,0,0,0.06); background: var(--white); }
+    .comparison-table tbody tr:last-child td { border-bottom: none; }
+    .comparison-table tbody td:first-child { font-weight: 500; color: var(--ink); background: rgba(245,243,240,0.5); }
+    .comparison-table tbody td:nth-child(2) { color: #888; text-align: center; }
+    .comparison-table tbody td:last-child { color: var(--teal); font-weight: 600; text-align: center; background: rgba(8,145,178,0.04); }
+    .comparison-table .savings-row td { background: rgba(8,145,178,0.08) !important; }
+    .comparison-table .savings-row td:last-child { font-size: 1.15rem; color: var(--coral); font-weight: 700; }
+    .comparison-table .check-row td:nth-child(2) { color: #d44; font-size: 1.3rem; font-weight: 700; }
+    .comparison-table .check-row td:last-child { color: var(--teal); font-size: 1.3rem; font-weight: 700; }
+
+    @media (max-width: 600px) {
+      .comparison-table { font-size: 0.85rem; }
+      .comparison-table thead th { padding: 0.75rem 0.6rem; font-size: 0.85rem; }
+      .comparison-table tbody td { padding: 0.65rem 0.6rem; font-size: 0.85rem; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
       .how-grid, .faq-grid { grid-template-columns: 1fr; }
@@ -778,10 +800,10 @@
           <tr><td data-i18n="compare_row1_label">Commissie</td><td data-i18n="compare_row1_agent">4% (ANG 18.000)</td><td data-i18n="compare_row1_venda">1% (ANG 4.500)</td></tr>
           <tr><td data-i18n="compare_row2_label">Startkosten</td><td data-i18n="compare_row2_agent">ANG 0</td><td data-i18n="compare_row2_venda">Vanaf ANG 399</td></tr>
           <tr><td data-i18n="compare_row3_label">Totaal bij ANG 450k</td><td data-i18n="compare_row3_agent">ANG 18.000</td><td data-i18n="compare_row3_venda">ANG 4.899</td></tr>
-          <tr><td data-i18n="compare_row4_label">Besparing</td><td data-i18n="compare_row4_agent">—</td><td data-i18n="compare_row4_venda">ANG 13.101</td></tr>
-          <tr><td data-i18n="compare_row5_label">Direct contact koper</td><td>❌</td><td>✅</td></tr>
-          <tr><td data-i18n="compare_row6_label">Jij bepaalt de prijs</td><td>❌</td><td>✅</td></tr>
-          <tr><td data-i18n="compare_row7_label">Eigen tempo</td><td>❌</td><td>✅</td></tr>
+          <tr class="savings-row"><td data-i18n="compare_row4_label">Besparing</td><td data-i18n="compare_row4_agent">—</td><td data-i18n="compare_row4_venda">ANG 13.101</td></tr>
+          <tr class="check-row"><td data-i18n="compare_row5_label">Direct contact koper</td><td>✗</td><td>✓</td></tr>
+          <tr class="check-row"><td data-i18n="compare_row6_label">Jij bepaalt de prijs</td><td>✗</td><td>✓</td></tr>
+          <tr class="check-row"><td data-i18n="compare_row7_label">Eigen tempo</td><td>✗</td><td>✓</td></tr>
         </tbody>
       </table>
     </div>
