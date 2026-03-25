@@ -601,6 +601,7 @@
       .nav-menu li { width:100%; }
       .nav-menu > li > a, .nav-menu > li > button { width:100%; padding:0.95rem 0.3rem; font-size:1rem; }
       .nav-menu .nav-cta { display:inline-flex; justify-content:center; width:100%; margin-top:0.55rem; }
+      .nav-menu [data-i18n="nav_portal"] { display:block; width:100%; text-align:center; padding:0.85rem 1rem !important; border-radius:10px !important; box-sizing:border-box; font-size:1rem !important; margin-top:0.5rem; }
       .nav-dropdown { width:100%; }
       .nav-dropdown-menu { position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:none; background:rgba(8,145,178,0.06); margin:0.2rem 0 0.5rem; }
       .nav-close { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:16px; right:16px; width:42px; height:42px; border:none; border-radius:12px; background:rgba(8,145,178,0.1); color:var(--ink); cursor:pointer; font-size:1.5rem; }
@@ -608,6 +609,28 @@
       body.nav-open .nav-overlay { opacity:1; visibility:visible; pointer-events:auto; }
       .hero-flamingo { display: none; }
       .img-break { background-attachment: scroll; }
+    }
+
+    @media (max-width: 768px) {
+      html, body { max-width: 100%; overflow-x: hidden; }
+      .hero { padding-top: 6.5rem; }
+      .hero-inner { gap: 2rem; align-items: flex-start; }
+      .hero-content h1 { font-size: clamp(2rem, 10vw, 2.9rem); line-height: 1.08; }
+      .hero-content p { font-size: 1rem; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .hero-btns .btn-primary, .hero-btns .btn-whatsapp { width: 100%; justify-content: center; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+      .comparison-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+      .comparison-table { min-width: 640px; }
+      .calc-input-row { flex-direction: column; align-items: stretch; gap: 0.85rem; }
+      .calc-range { min-height: 44px; }
+      .calc-range::-webkit-slider-thumb { width: 32px; height: 32px; }
+      .calc-range::-moz-range-thumb { width: 32px; height: 32px; }
+      .calc-number { width: 100%; text-align: center; }
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-links { grid-template-columns: 1fr; justify-items: center; }
+      .footer-lang { justify-content: center; }
     }
     @media (max-width: 600px) {
       .pricing-grid { max-width: 100%; gap: 1.4rem; }
@@ -688,7 +711,7 @@
       <li><a href="#prijzen" data-i18n="nav_prices">Prijzen</a></li>
       <li><a href="/blog/" data-i18n="nav_blog">Blog</a></li>
       <li><a href="#aanmelden" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
-      <li><a href="https://vendacuracao-seller.pages.dev" style="background:var(--ink);color:#fff;padding:0.4rem 1rem;border-radius:8px;font-weight:600;font-size:0.85rem;white-space:nowrap;" data-i18n="nav_portal">Mijn portal →</a></li>
+      <li><a href="https://vendacuracao-seller.pages.dev" style="background:var(--ink);color:#fff;padding:0.85rem 1rem;border-radius:10px;font-weight:600;font-size:1rem;white-space:nowrap;display:block;width:100%;text-align:center;box-sizing:border-box;" data-i18n="nav_portal">Mijn portal →</a></li>
     </ul>
     <div class="lang-bar">
       <button class="lang-btn" onclick="setLang('nl')">NL</button>
