@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0891B2">
+  <meta name="author" content="VendaCuraçao">
+  <link rel="canonical" href="https://vendacuracao.com/betalen">
+  <link rel="alternate" hreflang="nl" href="https://vendacuracao.com/betalen?lang=nl">
+  <link rel="alternate" hreflang="en" href="https://vendacuracao.com/betalen?lang=en">
+  <link rel="alternate" hreflang="pap" href="https://vendacuracao.com/betalen?lang=pap">
+  <link rel="alternate" hreflang="x-default" href="https://vendacuracao.com/betalen">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <title>Betaal je pakket | VendaCuraçao</title>
+  <meta name="description" content="Kies je VendaCuraçao pakket en betaal veilig via Stripe test checkout.">
+  <meta property="og:title" content="Betaal je pakket | VendaCuraçao">
+  <meta property="og:description" content="Start, Plus of Full Service — veilig betalen via Stripe.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vendacuracao.com/betalen">
+  <meta property="og:site_name" content="VendaCuraçao">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Betaal je pakket | VendaCuraçao">
+  <meta name="twitter:description" content="Veilig betalen via Stripe voor je VendaCuraçao listing.">
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "VendaCuraçao Start",
+      "description": "Online plaatsing, 3 foto's en direct kopercontact.",
+      "brand": {"@type": "Brand", "name": "VendaCuraçao"},
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "ANG",
+        "price": "399",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vendacuracao.com/betalen?pakket=start"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "VendaCuraçao Plus",
+      "description": "Uitgebreide listing, 10 foto's, social media promotie en prijsadvies.",
+      "brand": {"@type": "Brand", "name": "VendaCuraçao"},
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "ANG",
+        "price": "599",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vendacuracao.com/betalen?pakket=plus"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "VendaCuraçao Full Service",
+      "description": "Alles van Plus plus begeleiding bij bezichtigingen en onderhandelingsondersteuning.",
+      "brand": {"@type": "Brand", "name": "VendaCuraçao"},
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "ANG",
+        "price": "899",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vendacuracao.com/betalen?pakket=full"
+      }
+    }
+  ]
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sand:#FDF6EC;
+      --sand-2:#F5EAD4;
+      --teal:#0891B2;
+      --teal-dark:#0C6B87;
+      --teal-light:#E0F4F8;
+      --coral:#E05C38;
+      --coral-dark:#C2451E;
+      --gold:#D97706;
+      --green:#166534;
+      --ink:#1A2332;
+      --ink-soft:#4A5568;
+      --white:#FFFFFF;
+      --shadow:0 18px 40px rgba(26,35,50,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--sand); color:var(--ink); font-size:16px; line-height:1.6; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,246,236,0.94); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(8,145,178,0.12);
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
+    .logo span { color: var(--teal); }
+    .nav-actions { display:flex; align-items:center; gap:1rem; }
+    .nav-menu { list-style:none; display:flex; align-items:center; gap:2rem; }
+    .nav-menu a { text-decoration:none; font-size:0.875rem; font-weight:500; color:var(--ink-soft); transition:color 0.2s; }
+    .nav-menu a:hover { color:var(--teal); }
+    .nav-cta { background: var(--coral) !important; color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 6px; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--coral-dark) !important; color: var(--white) !important; }
+    .nav-dropdown { position:relative; }
+    .nav-dropdown > a { display:inline-flex; align-items:center; gap:0.35rem; }
+    .nav-dropdown-menu {
+      position:absolute; top:calc(100% + 14px); left:0; min-width:190px; padding:0.8rem;
+      background:rgba(253,246,236,0.98); border:1px solid rgba(8,145,178,0.15); border-radius:18px;
+      box-shadow:0 18px 40px rgba(26,35,50,0.12); display:flex; flex-direction:column; gap:0.55rem;
+      opacity:0; visibility:hidden; transform:translateY(10px); transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { opacity:1; visibility:visible; transform:translateY(0); }
+    .nav-dropdown-menu a { padding:0.35rem 0.25rem; white-space:nowrap; }
+    .nav-toggle {
+      display:none; width:46px; height:46px; border:none; border-radius:14px; background:rgba(8,145,178,0.1);
+      color:var(--ink); cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:5px;
+    }
+    .nav-toggle span { width:20px; height:2px; border-radius:999px; background:currentColor; transition:transform 0.25s ease, opacity 0.2s ease; }
+    body.nav-open .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    body.nav-open .nav-toggle span:nth-child(2) { opacity:0; }
+    body.nav-open .nav-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .nav-overlay { position:fixed; inset:0; background:rgba(26,35,50,0.34); backdrop-filter:blur(4px); opacity:0; visibility:hidden; pointer-events:none; transition:opacity 0.25s ease, visibility 0.25s ease; z-index:95; }
+    .nav-close { display:none; }
+    .lang-bar { display:flex; gap:4px; }
+    .lang-btn {
+      background:none; border:1px solid transparent; cursor:pointer; font-size:0.75rem; font-weight:600; letter-spacing:0.06em;
+      color:var(--ink-soft); padding:0.3rem 0.6rem; border-radius:4px; transition:all 0.15s; font-family:'Inter',sans-serif;
+    }
+    .lang-btn:hover { border-color:var(--teal); color:var(--teal); }
+    .lang-btn.active { background:var(--teal); color:var(--white); border-color:var(--teal); }
+    .page-hero {
+      padding: 138px 5% 72px;
+      background: linear-gradient(135deg, rgba(12,107,135,0.96) 0%, rgba(26,35,50,0.95) 55%, rgba(224,92,56,0.92) 100%);
+      color: var(--white);
+    }
+    .page-hero-inner { max-width: 1180px; margin: 0 auto; display:grid; grid-template-columns: minmax(0,1.15fr) minmax(280px,.85fr); gap:2rem; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:.45rem; padding:.42rem .9rem; border-radius:999px; background:rgba(255,255,255,0.12); font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,0.82); margin-bottom:1rem; }
+    .page-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.35rem,4.8vw,4rem); line-height:1.1; font-weight:400; margin-bottom:1rem; }
+    .page-hero p { color:rgba(255,255,255,0.82); max-width:680px; font-size:1.05rem; }
+    .hero-card { background:rgba(253,246,236,0.12); border:1px solid rgba(255,255,255,0.14); border-radius:24px; padding:1.5rem; backdrop-filter:blur(8px); box-shadow:0 18px 50px rgba(0,0,0,0.18); }
+    .hero-card h2 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; margin-bottom:.7rem; }
+    .hero-card ul { padding-left:1.2rem; display:grid; gap:.55rem; color:rgba(255,255,255,0.84); }
+    main { padding: 0 5% 90px; }
+    .shell { max-width:1180px; margin: -34px auto 0; }
+    .payment-panel {
+      background:var(--white); border-radius:30px; box-shadow:var(--shadow); padding:34px;
+      border:1px solid rgba(8,145,178,0.08);
+    }
+    .section-head { display:flex; justify-content:space-between; gap:2rem; align-items:flex-end; flex-wrap:wrap; margin-bottom:2rem; }
+    .section-head h2 { font-family:'Playfair Display',serif; font-size:2.1rem; font-weight:400; }
+    .section-head p { color:var(--ink-soft); max-width:620px; }
+    .package-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.4rem; }
+    .package-card {
+      position:relative; border:2px solid rgba(8,145,178,0.12); background:linear-gradient(180deg, #fff 0%, #fffcf8 100%);
+      border-radius:24px; padding:1.5rem; cursor:pointer; transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      box-shadow:0 14px 32px rgba(26,35,50,0.04);
+    }
+    .package-card:hover { transform:translateY(-3px); box-shadow:0 18px 34px rgba(26,35,50,0.08); }
+    .package-card.selected { border-color:var(--teal); box-shadow:0 20px 44px rgba(8,145,178,0.16); }
+    .package-card input { position:absolute; opacity:0; pointer-events:none; }
+    .checkmark {
+      position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%;
+      background:rgba(224,92,56,0.12); color:var(--coral); display:flex; align-items:center; justify-content:center;
+      font-weight:800; font-size:1rem; border:1px solid rgba(224,92,56,0.18);
+    }
+    .package-card.selected .checkmark { background:var(--coral); color:#fff; }
+    .tier { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:var(--teal-dark); margin-bottom:.6rem; }
+    .package-card h3 { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:400; margin-bottom:.25rem; }
+    .package-price { font-size:2rem; font-weight:700; color:var(--ink); margin-bottom:.65rem; }
+    .package-tagline { color:var(--ink-soft); min-height:48px; margin-bottom:.9rem; }
+    .package-features { list-style:none; display:grid; gap:.65rem; margin-bottom:1rem; }
+    .package-features li { display:flex; gap:.6rem; color:var(--ink-soft); font-size:.95rem; }
+    .package-features li::before { content:'✓'; color:var(--teal); font-weight:700; }
+    .price-detail {
+      padding:1rem 1.05rem; border-radius:16px; background:rgba(8,145,178,0.06); color:var(--ink); font-weight:600; line-height:1.5;
+    }
+    .checkout-bar {
+      margin-top:2rem; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1.2rem; align-items:center;
+      background:linear-gradient(135deg, rgba(8,145,178,0.08), rgba(224,92,56,0.08)); border:1px solid rgba(8,145,178,0.12); border-radius:24px; padding:1.4rem;
+    }
+    .checkout-summary strong { display:block; font-size:1.1rem; color:var(--ink); margin-bottom:.3rem; }
+    .checkout-summary span { color:var(--ink-soft); }
+    .pay-button {
+      border:none; border-radius:16px; background:var(--coral); color:#fff; font-size:1rem; font-weight:800; padding:1rem 1.5rem;
+      min-width:320px; box-shadow:0 16px 34px rgba(224,92,56,0.28); cursor:pointer; transition:transform .16s ease, background .16s ease, opacity .16s ease;
+    }
+    .pay-button:hover { background:var(--coral-dark); transform:translateY(-1px); }
+    .pay-button:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+    .meta-row { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center; }
+    .trust-pill {
+      display:inline-flex; align-items:center; gap:.55rem; padding:.8rem 1rem; background:var(--white); border:1px solid rgba(8,145,178,0.14);
+      border-radius:999px; color:var(--ink); font-weight:600; box-shadow:0 10px 24px rgba(26,35,50,0.04);
+    }
+    .trust-pill svg { width:18px; height:18px; flex-shrink:0; color:var(--green); }
+    .status-note { margin-top:1rem; color:var(--ink-soft); font-size:.92rem; }
+    .status-note strong { color:var(--ink); }
+    .helper-box {
+      margin-top:2rem; background:rgba(253,246,236,0.75); border:1px solid rgba(224,92,56,0.12); border-radius:22px; padding:1.25rem 1.35rem;
+    }
+    .helper-box h3 { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:400; margin-bottom:.45rem; }
+    .helper-box p { color:var(--ink-soft); }
+    footer { background: var(--ink); padding: 2.5rem 5%; margin-top:90px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr auto; gap: 2rem; align-items: start; }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.5rem; }
+    footer .logo { color: var(--white); }
+    footer .logo span { color: var(--teal); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.35); font-weight: 300; }
+    .footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem 1.2rem; }
+    .footer-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; font-size: 0.82rem; font-weight: 400; transition: color 0.2s; display: block; }
+    .footer-links a:hover { color: var(--teal) !important; }
+    .footer-lang { display:flex; align-items:flex-start; }
+    @media (max-width: 980px) {
+      .page-hero-inner, .checkout-bar, .footer-inner { grid-template-columns:1fr; }
+      .package-grid { grid-template-columns:1fr; }
+      .pay-button { width:100%; min-width:0; }
+      .nav-toggle { display:flex; }
+      .nav-actions { gap:0.75rem; }
+      .nav-menu { position:fixed; top:0; right:0; height:100vh; width:min(360px,88vw); padding:5.5rem 1.4rem 1.6rem; background:var(--sand); border-left:1px solid rgba(8,145,178,0.12); box-shadow:-20px 0 50px rgba(26,35,50,0.18); flex-direction:column; align-items:flex-start; gap:0.2rem; overflow-y:auto; transform:translateX(100%); transition:transform 0.3s ease; z-index:110; }
+      .nav-menu li { width:100%; }
+      .nav-menu > li > a, .nav-menu > li > button { width:100%; padding:0.95rem 0.3rem; font-size:1rem; }
+      .nav-menu .nav-cta { display:inline-flex; justify-content:center; width:100%; margin-top:0.55rem; }
+      .nav-dropdown { width:100%; }
+      .nav-dropdown-menu { position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:none; background:rgba(8,145,178,0.06); margin:0.2rem 0 0.5rem; }
+      .nav-close { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:16px; right:16px; width:42px; height:42px; border:none; border-radius:12px; background:rgba(8,145,178,0.1); color:var(--ink); cursor:pointer; font-size:1.5rem; }
+      body.nav-open .nav-menu { transform:translateX(0); }
+      body.nav-open .nav-overlay { opacity:1; visibility:visible; pointer-events:auto; }
+    }
+    @media (max-width: 640px) {
+      .payment-panel { padding:22px; border-radius:24px; }
+      .page-hero { padding-top:120px; }
+      .footer-links { grid-template-columns:repeat(2,1fr); justify-items:center; }
+      .footer-lang { justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">Venda<span>Curaçao</span></a>
+  <div class="nav-actions">
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+    <ul class="nav-menu" id="site-menu">
+      <li><button class="nav-close" type="button" aria-label="Close menu">×</button></li>
+      <li><a href="/hoe-werkt-het.html" data-i18n="nav_how">Hoe het werkt</a></li>
+      <li><a href="/#waarom" data-i18n="nav_why">Voordelen</a></li>
+      <li><a href="/veelgestelde-vragen.html" data-i18n="nav_faq">FAQ</a></li>
+      <li><a href="/over-ons.html" data-i18n="nav_about">Over ons</a></li>
+      <li><a href="/contact.html" data-i18n="nav_contact">Contact</a></li>
+      <li class="nav-dropdown"><a href="#" data-i18n="nav_areas">Buurten ▾</a><div class="nav-dropdown-menu"><a href="/jan-thiel.html">Jan Thiel</a><a href="/blue-bay.html">Blue Bay</a><a href="/bandabou.html">Bandabou</a></div></li>
+      <li><a href="/blog/" data-i18n="nav_blog">Blog</a></li>
+      <li><a href="/aanmelden.html" class="nav-cta" data-i18n="nav_cta">Meld je object aan →</a></li>
+    </ul>
+    <div class="lang-bar">
+      <button class="lang-btn" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('pap')">PAP</button>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay" hidden></div>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <span class="eyebrow" data-i18n="eyebrow">Veilig betalen</span>
+      <h1 data-i18n="hero_title">Kies je pakket en activeer je listing vandaag nog.</h1>
+      <p data-i18n="hero_text">Je betaalt veilig via Stripe Checkout in testmodus. Na betaling sturen we je terug naar de bedanktpagina en kan je listing worden ingepland voor activatie.</p>
+    </div>
+    <div class="hero-card">
+      <h2 data-i18n="hero_card_title">Wat je vandaag regelt</h2>
+      <ul>
+        <li data-i18n="hero_card_point_1">Directe selectie van Start, Plus of Full Service.</li>
+        <li data-i18n="hero_card_point_2">Veilige Stripe hosted checkout zonder verborgen kosten.</li>
+        <li data-i18n="hero_card_point_3">Activatieflow richting /bedankt.html?betaald=true na afronding.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="shell">
+    <section class="payment-panel">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="section_title">Selecteer je VendaCuraçao pakket</h2>
+          <p data-i18n="section_text">Klik op het pakket dat bij je verkoop past. Via de URL-parameter <strong>?pakket=start|plus|full</strong> wordt je keuze automatisch voorgeselecteerd.</p>
+        </div>
+      </div>
+
+      <div class="package-grid" id="packageGrid">
+        <label class="package-card" data-package="start">
+          <input type="radio" name="pakket" value="start">
+          <span class="checkmark">✓</span>
+          <div class="tier" data-i18n="start_tier">Start</div>
+          <h3 data-i18n="start_name">Zelf verkopen</h3>
+          <div class="package-price">ANG 399</div>
+          <p class="package-tagline" data-i18n="start_tagline">Voor verkopers die snel online willen en zelf contact met kopers beheren.</p>
+          <ul class="package-features">
+            <li data-i18n="start_feature_1">Online plaatsing</li>
+            <li data-i18n="start_feature_2">3 foto's inbegrepen</li>
+            <li data-i18n="start_feature_3">Direct kopercontact</li>
+          </ul>
+          <div class="price-detail" data-i18n="start_detail">ANG 399 eenmalige plaatsingskosten + 1% bij verkoop</div>
+        </label>
+
+        <label class="package-card" data-package="plus">
+          <input type="radio" name="pakket" value="plus">
+          <span class="checkmark">✓</span>
+          <div class="tier" data-i18n="plus_tier">Plus</div>
+          <h3 data-i18n="plus_name">Meer bereik</h3>
+          <div class="package-price">ANG 599</div>
+          <p class="package-tagline" data-i18n="plus_tagline">Voor verkopers die extra zichtbaarheid en hulp bij positionering willen.</p>
+          <ul class="package-features">
+            <li data-i18n="plus_feature_1">Uitgebreide listing</li>
+            <li data-i18n="plus_feature_2">10 foto's inbegrepen</li>
+            <li data-i18n="plus_feature_3">Social media promotie + prijsadvies</li>
+          </ul>
+          <div class="price-detail" data-i18n="plus_detail">ANG 599 eenmalige plaatsingskosten + 1% bij verkoop</div>
+        </label>
+
+        <label class="package-card" data-package="full">
+          <input type="radio" name="pakket" value="full">
+          <span class="checkmark">✓</span>
+          <div class="tier" data-i18n="full_tier">Full Service</div>
+          <h3 data-i18n="full_name">Begeleiding inbegrepen</h3>
+          <div class="package-price">ANG 899</div>
+          <p class="package-tagline" data-i18n="full_tagline">Voor verkopers die maximale ondersteuning willen tijdens het hele traject.</p>
+          <ul class="package-features">
+            <li data-i18n="full_feature_1">Alles van Plus</li>
+            <li data-i18n="full_feature_2">Begeleiding bezichtigingen</li>
+            <li data-i18n="full_feature_3">Onderhandelingsondersteuning</li>
+          </ul>
+          <div class="price-detail" data-i18n="full_detail">ANG 899 eenmalige plaatsingskosten + 1% bij verkoop</div>
+        </label>
+      </div>
+
+      <div class="checkout-bar">
+        <div class="checkout-summary">
+          <strong id="summaryTitle">Start · ANG 399</strong>
+          <span id="summaryDetail">ANG 399 eenmalige plaatsingskosten + 1% bij verkoop</span>
+        </div>
+        <button class="pay-button" id="checkoutButton" type="button">Betaal ANG 399 en start vandaag →</button>
+      </div>
+
+      <div class="meta-row">
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <span data-i18n="trust_1">Veilig betalen via Stripe</span>
+        </div>
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 1 1 8 0v3"></path></svg>
+          <span data-i18n="trust_2">Geen verborgen kosten</span>
+        </div>
+      </div>
+
+      <p class="status-note" data-i18n="status_note">Testmodus actief. Vervang de publishable key en session endpoints zodra live Stripe is gekoppeld.</p>
+
+      <div class="helper-box">
+        <h3 data-i18n="helper_title">Technische notitie</h3>
+        <p data-i18n="helper_text">Deze pagina gebruikt Stripe Checkout met een placeholder publishable key. Voor productie heb je een server endpoint nodig dat een Checkout Session aanmaakt en daarna een redirect geeft naar <strong>/bedankt.html?betaald=true</strong>. Voeg later ook een webhook endpoint toe voor betalingsbevestiging en statusupdates in je backend.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="logo">Venda<span>Curaçao</span></a>
+      <p data-i18n="footer_copy">© 2026 VendaCuraçao · Particulier vastgoed op Curaçao</p>
+    </div>
+    <div class="footer-links">
+      <a href="/hoe-werkt-het.html" data-i18n="nav_how">Hoe het werkt</a>
+      <a href="/veelgestelde-vragen.html" data-i18n="nav_faq">FAQ</a>
+      <a href="/over-ons.html" data-i18n="nav_about">Over ons</a>
+      <a href="/contact.html" data-i18n="nav_contact">Contact</a>
+      <a href="/woning-verkopen-curacao.html" data-i18n="fl_woning">Woning verkopen</a>
+      <a href="/kavel-verkopen-curacao.html" data-i18n="fl_kavel">Kavel verkopen</a>
+      <a href="/blog/" data-i18n="nav_blog">Blog</a>
+    </div>
+    <div class="footer-lang">
+      <div class="lang-bar">
+        <button class="lang-btn" onclick="setLang('nl')">NL</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('pap')">PAP</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const T = {
+  nl: {
+    nav_how:"Hoe het werkt", nav_why:"Voordelen", nav_faq:"FAQ", nav_about:"Over ons", nav_contact:"Contact", nav_blog:"Blog", nav_cta:"Meld je object aan →", nav_areas:"Buurten ▾",
+    eyebrow:"Veilig betalen",
+    hero_title:"Kies je pakket en activeer je listing vandaag nog.",
+    hero_text:"Je betaalt veilig via Stripe Checkout in testmodus. Na betaling sturen we je terug naar de bedanktpagina en kan je listing worden ingepland voor activatie.",
+    hero_card_title:"Wat je vandaag regelt",
+    hero_card_point_1:"Directe selectie van Start, Plus of Full Service.",
+    hero_card_point_2:"Veilige Stripe hosted checkout zonder verborgen kosten.",
+    hero_card_point_3:"Activatieflow richting /bedankt.html?betaald=true na afronding.",
+    section_title:"Selecteer je VendaCuraçao pakket",
+    section_text:"Klik op het pakket dat bij je verkoop past. Via de URL-parameter <strong>?pakket=start|plus|full</strong> wordt je keuze automatisch voorgeselecteerd.",
+    start_tier:"Start", start_name:"Zelf verkopen", start_tagline:"Voor verkopers die snel online willen en zelf contact met kopers beheren.", start_feature_1:"Online plaatsing", start_feature_2:"3 foto's inbegrepen", start_feature_3:"Direct kopercontact", start_detail:"ANG 399 eenmalige plaatsingskosten + 1% bij verkoop",
+    plus_tier:"Plus", plus_name:"Meer bereik", plus_tagline:"Voor verkopers die extra zichtbaarheid en hulp bij positionering willen.", plus_feature_1:"Uitgebreide listing", plus_feature_2:"10 foto's inbegrepen", plus_feature_3:"Social media promotie + prijsadvies", plus_detail:"ANG 599 eenmalige plaatsingskosten + 1% bij verkoop",
+    full_tier:"Full Service", full_name:"Begeleiding inbegrepen", full_tagline:"Voor verkopers die maximale ondersteuning willen tijdens het hele traject.", full_feature_1:"Alles van Plus", full_feature_2:"Begeleiding bezichtigingen", full_feature_3:"Onderhandelingsondersteuning", full_detail:"ANG 899 eenmalige plaatsingskosten + 1% bij verkoop",
+    trust_1:"Veilig betalen via Stripe", trust_2:"Geen verborgen kosten",
+    status_note:"Testmodus actief. Vervang de publishable key en session endpoints zodra live Stripe is gekoppeld.",
+    helper_title:"Technische notitie",
+    helper_text:"Deze pagina gebruikt Stripe Checkout met een placeholder publishable key. Voor productie heb je een server endpoint nodig dat een Checkout Session aanmaakt en daarna een redirect geeft naar <strong>/bedankt.html?betaald=true</strong>. Voeg later ook een webhook endpoint toe voor betalingsbevestiging en statusupdates in je backend.",
+    footer_copy:"© 2026 VendaCuraçao · Particulier vastgoed op Curaçao",
+    fl_woning:"Woning verkopen", fl_kavel:"Kavel verkopen",
+    btn_template:"Betaal ANG {price} en start vandaag →"
+  },
+  en: {
+    nav_how:"How it works", nav_why:"Benefits", nav_faq:"FAQ", nav_about:"About us", nav_contact:"Contact", nav_blog:"Blog", nav_cta:"List your property →", nav_areas:"Neighborhoods ▾",
+    eyebrow:"Secure payment",
+    hero_title:"Choose your package and activate your listing today.",
+    hero_text:"You pay securely via Stripe Checkout in test mode. After payment, you are redirected to the thank-you page so your listing can move toward activation.",
+    hero_card_title:"What you arrange today",
+    hero_card_point_1:"Direct selection of Start, Plus or Full Service.",
+    hero_card_point_2:"Secure Stripe hosted checkout with no hidden fees.",
+    hero_card_point_3:"Payment flow redirects to /bedankt.html?betaald=true after completion.",
+    section_title:"Select your VendaCuraçao package",
+    section_text:"Click the package that fits your sale. The URL parameter <strong>?pakket=start|plus|full</strong> preselects your package automatically.",
+    start_tier:"Start", start_name:"Sell it yourself", start_tagline:"For sellers who want to go live fast and manage buyer contact themselves.", start_feature_1:"Online placement", start_feature_2:"3 photos included", start_feature_3:"Direct buyer contact", start_detail:"ANG 399 one-time listing fee + 1% on sale",
+    plus_tier:"Plus", plus_name:"More reach", plus_tagline:"For sellers who want extra visibility and support with positioning.", plus_feature_1:"Expanded listing", plus_feature_2:"10 photos included", plus_feature_3:"Social media promotion + pricing advice", plus_detail:"ANG 599 one-time listing fee + 1% on sale",
+    full_tier:"Full Service", full_name:"Guided support", full_tagline:"For sellers who want maximum support throughout the process.", full_feature_1:"Everything in Plus", full_feature_2:"Viewing assistance", full_feature_3:"Negotiation support", full_detail:"ANG 899 one-time listing fee + 1% on sale",
+    trust_1:"Secure payment via Stripe", trust_2:"No hidden fees",
+    status_note:"Test mode is active. Replace the publishable key and session endpoints once live Stripe is connected.",
+    helper_title:"Technical note",
+    helper_text:"This page uses Stripe Checkout with a placeholder publishable key. For production, you need a server endpoint that creates a Checkout Session and redirects to <strong>/bedankt.html?betaald=true</strong>. Add a webhook endpoint later for payment confirmations and backend status updates.",
+    footer_copy:"© 2026 VendaCuraçao · Private real estate in Curaçao",
+    fl_woning:"Sell property", fl_kavel:"Sell land",
+    btn_template:"Pay ANG {price} and start today →"
+  },
+  pap: {
+    nav_how:"Kòmo ta traha", nav_why:"Benefisionan", nav_faq:"FAQ", nav_about:"Tokante nos", nav_contact:"Kontakt", nav_blog:"Blog", nav_cta:"Registrá bo kas →", nav_areas:"Barionan ▾",
+    eyebrow:"Pago sigur",
+    hero_title:"Skohé bo pakete i aktivá bo listing awe mes.",
+    hero_text:"Bo ta paga sigur via Stripe Checkout den test mode. Despues di pago, bo ta bai bèk na e pagina di danki pa bo listing por sigui pa aktivashon.",
+    hero_card_title:"Kiko bo ta regla awe",
+    hero_card_point_1:"Selekshon directo di Start, Plus of Full Service.",
+    hero_card_point_2:"Stripe hosted checkout sigur sin kostonan skondí.",
+    hero_card_point_3:"Flow di pago ta manda bo pa /bedankt.html?betaald=true despues di finalisá.",
+    section_title:"Skohé bo pakete di VendaCuraçao",
+    section_text:"Klik riba e pakete ku ta kuadra ku bo benta. E parametro di URL <strong>?pakket=start|plus|full</strong> ta selektá bo pakete automáticamente.",
+    start_tier:"Start", start_name:"Bende bo mes", start_tagline:"Pa bendedónan ku ke bai live lihé i manehá kontakto ku kompradornan nan mes.", start_feature_1:"Plasamentu online", start_feature_2:"3 potret inkluí", start_feature_3:"Kontakto direkt ku komprador", start_detail:"ANG 399 un biaha pa plasamentu + 1% ora di benta",
+    plus_tier:"Plus", plus_name:"Mas alcance", plus_tagline:"Pa bendedónan ku ke mas visibilidad i yudansa ku posicionamentu.", plus_feature_1:"Listing mas amplio", plus_feature_2:"10 potret inkluí", plus_feature_3:"Promoshon na social media + konseho di preis", plus_detail:"ANG 599 un biaha pa plasamentu + 1% ora di benta",
+    full_tier:"Full Service", full_name:"Guia inkluí", full_tagline:"Pa bendedónan ku ke sosten máximo durante henter e trayekto.", full_feature_1:"Tur kos di Plus", full_feature_2:"Guia pa bishita", full_feature_3:"Sosten den negoshiashon", full_detail:"ANG 899 un biaha pa plasamentu + 1% ora di benta",
+    trust_1:"Pago sigur via Stripe", trust_2:"Sin kostonan skondí",
+    status_note:"Test mode ta aktivo. Kambia e publishable key i e session endpoints ora Stripe live ta konektá.",
+    helper_title:"Nota tékniko",
+    helper_text:"E pagina aki ta usa Stripe Checkout ku un publishable key placeholder. Pa produccion bo mester un server endpoint ku ta krea un Checkout Session i despues manda bo pa <strong>/bedankt.html?betaald=true</strong>. Despues añadi un webhook endpoint pa konfirmashon di pago i status updates den bo backend.",
+    footer_copy:"© 2026 VendaCuraçao · Propiedad partikular na Korsou",
+    fl_woning:"Bende kas", fl_kavel:"Bende tereno",
+    btn_template:"Paga ANG {price} i kuminsá awe →"
+  }
+};
+
+const PACKAGES = {
+  start: {
+    price: 399,
+    sessionUrl: '/api/create-checkout-session?p=start',
+    name: { nl:'Start', en:'Start', pap:'Start' },
+    detailKey: 'start_detail'
+  },
+  plus: {
+    price: 599,
+    sessionUrl: '/api/create-checkout-session?p=plus',
+    name: { nl:'Plus', en:'Plus', pap:'Plus' },
+    detailKey: 'plus_detail'
+  },
+  full: {
+    price: 899,
+    sessionUrl: '/api/create-checkout-session?p=full',
+    name: { nl:'Full Service', en:'Full Service', pap:'Full Service' },
+    detailKey: 'full_detail'
+  }
+};
+
+const stripe = window.Stripe('pk_test_PLACEHOLDER');
+const cards = Array.from(document.querySelectorAll('.package-card'));
+const radios = Array.from(document.querySelectorAll('input[name="pakket"]'));
+const checkoutButton = document.getElementById('checkoutButton');
+const summaryTitle = document.getElementById('summaryTitle');
+const summaryDetail = document.getElementById('summaryDetail');
+const params = new URLSearchParams(window.location.search);
+let currentLang = params.get('lang') || 'nl';
+let selectedPackage = 'start';
+
+function updateTexts() {
+  const t = T[currentLang] || T.nl;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === currentLang);
+  });
+  document.documentElement.lang = currentLang === 'pap' ? 'pap' : currentLang;
+  updateSelectionUI();
+}
+
+function setLang(lang) {
+  currentLang = T[lang] ? lang : 'nl';
+  params.set('lang', currentLang);
+  const url = new URL(window.location.href);
+  url.search = params.toString();
+  window.history.replaceState({}, '', url);
+  updateTexts();
+}
+window.setLang = setLang;
+
+function updateSelectionUI() {
+  cards.forEach(card => {
+    const active = card.dataset.package === selectedPackage;
+    card.classList.toggle('selected', active);
+    const radio = card.querySelector('input[type="radio"]');
+    radio.checked = active;
+  });
+
+  const t = T[currentLang] || T.nl;
+  const pkg = PACKAGES[selectedPackage];
+  summaryTitle.textContent = `${pkg.name[currentLang] || pkg.name.nl} · ANG ${pkg.price}`;
+  summaryDetail.textContent = t[pkg.detailKey];
+  checkoutButton.textContent = t.btn_template.replace('{price}', pkg.price);
+}
+
+function selectPackage(pkg) {
+  if (!PACKAGES[pkg]) return;
+  selectedPackage = pkg;
+  params.set('pakket', pkg);
+  const url = new URL(window.location.href);
+  url.search = params.toString();
+  window.history.replaceState({}, '', url);
+  updateSelectionUI();
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', () => selectPackage(card.dataset.package));
+});
+radios.forEach(radio => {
+  radio.addEventListener('change', () => selectPackage(radio.value));
+});
+
+checkoutButton.addEventListener('click', async () => {
+  const pkg = PACKAGES[selectedPackage];
+  checkoutButton.disabled = true;
+  const originalText = checkoutButton.textContent;
+  checkoutButton.textContent = 'Loading Stripe Checkout…';
+
+  try {
+    // TODO: Replace this placeholder flow with your real backend endpoint that creates a Stripe Checkout Session.
+    // Example webhook endpoint for later: POST /api/stripe-webhook
+    const response = await fetch(pkg.sessionUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        package: selectedPackage,
+        successUrl: `${window.location.origin}/bedankt.html?betaald=true`,
+        cancelUrl: window.location.href
+      })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      if (data.sessionId) {
+        const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+        if (result.error) throw result.error;
+        return;
+      }
+    }
+
+    // Fallback for current placeholder setup in test mode.
+    window.location.href = `/bedankt.html?betaald=true`;
+  } catch (error) {
+    console.error(error);
+    alert('Stripe test checkout is nog niet volledig gekoppeld. Je wordt nu naar de bedanktpagina gestuurd als placeholder.');
+    window.location.href = `/bedankt.html?betaald=true`;
+  } finally {
+    checkoutButton.disabled = false;
+    checkoutButton.textContent = originalText;
+  }
+});
+
+const navToggle = document.querySelector('.nav-toggle');
+const navClose = document.querySelector('.nav-close');
+const navOverlay = document.querySelector('.nav-overlay');
+const navMenu = document.querySelector('.nav-menu');
+function setNavOpen(open) {
+  document.body.classList.toggle('nav-open', open);
+  if (navToggle) navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (navOverlay) navOverlay.hidden = !open;
+}
+if (navToggle) navToggle.addEventListener('click', () => setNavOpen(!document.body.classList.contains('nav-open')));
+if (navClose) navClose.addEventListener('click', () => setNavOpen(false));
+if (navOverlay) navOverlay.addEventListener('click', () => setNavOpen(false));
+if (navMenu) navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setNavOpen(false)));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') setNavOpen(false); });
+
+const initialPackage = params.get('pakket');
+selectPackage(PACKAGES[initialPackage] ? initialPackage : 'start');
+setLang(currentLang);
+</script>
+</body>
+</html>
