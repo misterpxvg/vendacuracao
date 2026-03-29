@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VendaCuraçao — Verkoop Zelf Je Woning op Curaçao</title>
+    <link>https://www.vendacuracao.com</link>
+    <description>Het FSBO-platform voor Curaçao. Verkoop je woning of kavel zonder makelaar. Actuele gidsen, tips en vastgoednieuws voor Curaçao.</description>
+    <language>nl</language>
+    <atom:link href="https://www.vendacuracao.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Sun, 29 Mar 2026 01:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://www.vendacuracao.com/logo.png</url>
+      <title>VendaCuraçao</title>
+      <link>https://www.vendacuracao.com</link>
+    </image>
+
+    <item>
+      <title>Vastgoedprijzen Curaçao 2026 — Wat Is Jouw Woning Waard?</title>
+      <link>https://www.vendacuracao.com/blog/vastgoedprijzen-curacao-2026.html</link>
+      <description>Een actueel overzicht van vastgoedprijzen per wijk op Curaçao in 2026. Van Blue Bay tot Bandabou — wat kost een woning, villa of kavel?</description>
+      <pubDate>Mon, 10 Mar 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/vastgoedprijzen-curacao-2026.html</guid>
+    </item>
+
+    <item>
+      <title>FSBO vs. Makelaar op Curaçao — Wat Kiest Jij?</title>
+      <link>https://www.vendacuracao.com/blog/fsbo-vs-makelaar.html</link>
+      <description>Zelf verkopen of toch een makelaar? We zetten de voor- en nadelen op een rij voor woningverkopers op Curaçao.</description>
+      <pubDate>Mon, 03 Mar 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/fsbo-vs-makelaar.html</guid>
+    </item>
+
+    <item>
+      <title>Woning Verkopen Zonder Makelaar op Curaçao — Complete Gids</title>
+      <link>https://www.vendacuracao.com/blog/woning-verkopen-zonder-makelaar-tips.html</link>
+      <description>Stap voor stap: hoe verkoop je zelf je woning op Curaçao? Van waardebepaling tot notarispassering.</description>
+      <pubDate>Mon, 24 Feb 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/woning-verkopen-zonder-makelaar-tips.html</guid>
+    </item>
+
+    <item>
+      <title>Notaris op Curaçao — Wat Doet Hij Bij Een Vastgoedverkoop?</title>
+      <link>https://www.vendacuracao.com/blog/notaris-curacao-vastgoed-verkoop.html</link>
+      <description>Alles over de rol van de notaris bij de verkoop van een woning of kavel op Curaçao. Kosten, doorlooptijd en wat je moet meenemen.</description>
+      <pubDate>Mon, 17 Feb 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/notaris-curacao-vastgoed-verkoop.html</guid>
+    </item>
+
+    <item>
+      <title>Huis Verkopen Vanuit Nederland naar Curaçao — Zo Werkt Het</title>
+      <link>https://www.vendacuracao.com/blog/huis-verkopen-vanuit-nederland-curacao.html</link>
+      <description>Woon je in Nederland en wil je een woning of kavel op Curaçao verkopen? Dit zijn de stappen, valkuilen en documenten die je nodig hebt.</description>
+      <pubDate>Mon, 10 Feb 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/huis-verkopen-vanuit-nederland-curacao.html</guid>
+    </item>
+
+    <item>
+      <title>Erfpacht vs. Eigendomsgrond op Curaçao — Uitleg</title>
+      <link>https://www.vendacuracao.com/blog/erfpacht-eigendomsgrond-curacao-uitleg.html</link>
+      <description>Wat is het verschil tussen erfpacht en eigendomsgrond op Curaçao? Welke is beter voor kopers en verkopers?</description>
+      <pubDate>Mon, 03 Feb 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/erfpacht-eigendomsgrond-curacao-uitleg.html</guid>
+    </item>
+
+    <item>
+      <title>Jan Thiel vs. Blue Bay — Welk Gebied Past Bij Jou?</title>
+      <link>https://www.vendacuracao.com/blog/jan-thiel-vs-blue-bay-vastgoed.html</link>
+      <description>Twee populaire woongebieden op Curaçao vergeleken. Wat zijn de verschillen in prijs, sfeer en investeringspotentieel?</description>
+      <pubDate>Mon, 27 Jan 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/jan-thiel-vs-blue-bay-vastgoed.html</guid>
+    </item>
+
+    <item>
+      <title>Wat Kost Een Makelaar op Curaçao?</title>
+      <link>https://www.vendacuracao.com/blog/wat-kost-makelaar-curacao.html</link>
+      <description>Makelaarscourtage op Curaçao loopt vaak op tot 4-6%. Wat krijg je daarvoor, en wanneer is zelf verkopen goedkoper?</description>
+      <pubDate>Mon, 20 Jan 2026 08:00:00 +0000</pubDate>
+      <guid>https://www.vendacuracao.com/blog/wat-kost-makelaar-curacao.html</guid>
+    </item>
+
+  </channel>
+</rss>
